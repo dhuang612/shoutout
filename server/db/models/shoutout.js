@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-
+//Sequelize.ARRAY(Sequelize.STRING)
 const Shoutout = db.define('shoutout', {
   user: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.STRING,
     validate: {
       notEmpty: true
     }
