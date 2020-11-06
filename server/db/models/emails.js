@@ -16,14 +16,12 @@ const Emails = db.define('email', {
   },
   email: {
     type: Sequelize.STRING,
-    unique: true,
+    unique: {
+      args: true,
+      msg: 'Email address already in use!'
+    },
     validate: {
-      isEmail: true,
-      unqiueEmail(email) {
-        if (!email.unique) {
-          throw new Error('email already added!')
-        }
-      }
+      isEmail: true
     }
   }
 })

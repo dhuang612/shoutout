@@ -13,6 +13,7 @@ router.post('/', async (req, res, next) => {
       } else {
         res.status(401).send('invalid email!')
       }
+      console.log(Emails)
     }
   } catch (error) {
     console.error(error)
