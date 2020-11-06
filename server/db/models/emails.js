@@ -10,12 +10,20 @@ const Emails = db.define('email', {
   },
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    validate: {
+      notEmpty: true
+    }
   },
   email: {
     type: Sequelize.STRING,
+    unique: true,
     validate: {
-      isEmail: true
+      isEmail: true,
+      unqiueEmail(email) {
+        if (!email.unique) {
+          throw new Error('email already added!')
+        }
+      }
     }
   }
 })
