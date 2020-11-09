@@ -5,8 +5,12 @@ module.exports = router
 router.post('/', async (req, res, next) => {
   try {
     if (req.body) {
-      if (User.prototype.usedValidEmail(req.body.email)) {
-        const addEmail = await Emails.create(req.body)
+      const user = req.user
+      if (user.usedValidEmail(req.body.email)) {
+        const addEmail = await user.createEmail({
+          firstName: req.body.firstName,
+          email: req.body.email
+        })
         if (addEmail) {
           res.status(200).send('successfully added email!')
         }
