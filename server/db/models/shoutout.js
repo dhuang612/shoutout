@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Shoutout = db.define('shoutout', {
-  user: {
+  name: {
     type: Sequelize.STRING,
     validate: {
       notEmpty: true
