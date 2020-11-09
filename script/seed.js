@@ -5,30 +5,51 @@ const {User} = require('../server/db/models')
 const {Shoutouts} = require('../server/db/models')
 const {Emails} = require('../server/db/models')
 
+const models = require('../server/db/models')
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'murphy@email.com', password: '123'}),
+    User.create({email: 'frank@email.com', password: '456'})
   ])
+  const userOne = users[0]
+  const userTwo = users[1]
+  const userThree = users[2]
 
-  const shoutouts = await Promise.all([
-    Shoutouts.create({
-      user: users[0].email,
-      message: 'Test msg',
-      from: users[1].email
-    }),
-    Shoutouts.create({user: users[1].email, message: 'another shoutout!'})
-  ])
-  const emails = await Promise.all([
-    Emails.create({firstName: 'testName', email: 'test@email.com'})
-  ])
+  // console.log(userOne)
   // console.log(users[0].email)
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${emails.length} emails`)
-  console.log(`seeded successfully`)
+  if (users) {
+    // const shoutouts = await userOne.getShoutouts()
+    const firstShoutout = await userOne.createShoutout({
+      name: users[1].email,
+      message: 'another shoutout!',
+      from: users[2].email
+    })
+    const secondShoutout = await userTwo.createShoutout({
+      name: users[0].email,
+      message: 'second test shoutout!',
+      from: users[1].email
+    })
+    const thirdShoutout = await userThree.createShoutout({
+      name: users[2].email,
+      message: 'final new shoutout!',
+      from: users[0].email
+    })
+
+    const addEmail = await userThree.createEmail({
+      firstName: 'Bob',
+      email: 'bob@email.com'
+    })
+
+    console.log(`seeded ${users.length} users`)
+    // console.log('this is what shoutout stores--> ', shoutouts)
+
+    console.log(`seeded successfully`)
+  }
 }
 
 // We've separated the `seed` function from the `runSeed` function.
