@@ -8,9 +8,14 @@ const db = require('../db')
  *
  *    BlogPost.belongsTo(User)
  */
-// User.hasMany(Shoutouts)
-User.belongsToMany(Shoutouts, {through: Emails})
-Shoutouts.belongsToMany(User, {through: Emails})
+
+// User.belongsToMany(Shoutouts, {through: Emails, foreignKey: "User_Id"})
+// Shoutouts.belongsToMany(User, {through: Emails})
+User.hasMany(Shoutouts, {as: 'shoutouts'})
+Shoutouts.belongsTo(User, {foreignKey: 'userid', as: 'shoutouts'})
+User.hasMany(Emails, {foreignKey: 'user.id'})
+Emails.belongsTo(User)
+// console.log(User)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
