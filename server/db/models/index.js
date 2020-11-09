@@ -9,8 +9,6 @@ const db = require('../db')
  *    BlogPost.belongsTo(User)
  */
 
-// User.belongsToMany(Shoutouts, {through: Emails, foreignKey: "User_Id"})
-// Shoutouts.belongsToMany(User, {through: Emails})
 User.hasMany(Shoutouts)
 Shoutouts.belongsTo(User)
 User.hasMany(Emails)
