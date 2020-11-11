@@ -12,7 +12,7 @@ router.post('/new', async (req, res, next) => {
       if (!req.body.from) {
         from = 'N/A'
       }
-
+      //magic method given to us by sequelize
       const createNewSO = await user.createShoutout({
         name: req.body.email,
         message: req.body.message,

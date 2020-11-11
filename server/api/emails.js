@@ -7,7 +7,7 @@ router.post('/', async (req, res, next) => {
     if (req.body) {
       const user = req.user
       if (user.usedValidEmail(req.body.email)) {
-        const addEmail = await user.createEmail({
+        const addEmail = user.createEmail({
           firstName: req.body.firstName,
           email: req.body.email
         })
