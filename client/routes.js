@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {AddEmail} from './components/email-form'
+import {AddShoutout} from './components/shoutout-form'
 import {me} from './store'
 
 /**
@@ -27,6 +28,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
             <Route path="/home/addEmail" component={AddEmail} />
+            <Route path="/home/addShoutout" component={AddShoutout} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
