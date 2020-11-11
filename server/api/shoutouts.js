@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, Emails} = require('../db/models')
+const sender = require('../emails/mailer')
 
 module.exports = router
 
@@ -34,4 +35,23 @@ router.post('/new', async (req, res, next) => {
   }
 })
 
-//edit eventually
+//edit eventually maybe?
+
+//send the shoutout
+router.get('/send', async (req, res, next) => {
+  try {
+    let data = {
+      templateName: 'shoutouts',
+      sender: 'no-reply@shoutout.com',
+      receiver: 'dhuang684@gmail.com',
+      name: 'some user',
+      welcome_url: 'localhost:8080/api/signup'
+    }
+    const sendEmail = sender.sendEmail(data)
+    if (sendEmail) {
+      res.status(200).send('successfully sent so!')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+})

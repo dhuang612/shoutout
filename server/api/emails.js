@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {Emails, User} = require('../db/models')
 module.exports = router
-
+//everything to do with adding emails
 router.post('/', async (req, res, next) => {
   try {
     if (req.body) {

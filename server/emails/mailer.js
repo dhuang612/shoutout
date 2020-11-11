@@ -1,7 +1,7 @@
-const sqMail = require('@sendgrid/mail')
-require('../secrets')
+const sgMail = require('@sendgrid/mail')
+require('../../secrets')
 
-sqMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 templates = {
   welcome: 'd-19822032d2e2456084ebf2dc0a909913',

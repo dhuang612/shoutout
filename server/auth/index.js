@@ -1,5 +1,7 @@
 const router = require('express').Router()
+const Emails = require('../db/models/emails')
 const User = require('../db/models/user')
+const sender = require('../emails/mailer')
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
