@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Emails} = require('../db/models')
 
 module.exports = router
 
@@ -12,14 +12,21 @@ router.post('/new', async (req, res, next) => {
       if (!req.body.from) {
         from = 'N/A'
       }
-      //magic method given to us by sequelize
-      const createNewSO = await user.createShoutout({
-        name: req.body.email,
-        message: req.body.message,
-        from: req.body.from || from
-      })
-      if (createNewSO) {
-        res.status(200).send('successfully made new SO')
+      const emailToCheck = req.body.email
+      const checkEmail = await Emails.findOne({where: {email: emailToCheck}})
+      if (!checkEmail) {
+        res.status(401).send('email doesnt exist')
+      } else {
+        //magic method given to us by sequelize
+        const createNewSO = await user.createShoutout({
+          name: req.body.name,
+          message: req.body.message,
+          email: req.body.email,
+          from: req.body.from || from
+        })
+        if (createNewSO) {
+          res.status(200).send('successfully made new SO')
+        }
       }
     }
   } catch (error) {
