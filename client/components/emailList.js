@@ -7,10 +7,8 @@ export class EmailList extends Component {
   componentDidMount() {
     this.props.showAllEmails()
   }
-  //&& emails !== undefined
   render() {
     const emails = this.props.emails.data
-    console.log(emails)
     if (emails !== [] && emails !== undefined) {
       return (
         <div>
@@ -27,7 +25,7 @@ export class EmailList extends Component {
         </div>
       )
     } else {
-      return <div>No emails</div>
+      return <div>Loading...</div>
     }
   }
 }
