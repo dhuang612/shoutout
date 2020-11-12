@@ -17,6 +17,17 @@ export const addEmail = (firstName, email) => async dispatch => {
   }
 }
 
+export const showEmails = () => async dispatch => {
+  try {
+    const user = await axios.get('/auth/me')
+    const id = user.id
+    const allEmails = await axios.get('/api/emails/showAllEmails', {id})
+    dispatch(getEmails(allEmails))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export default function(state = emails, action) {
   switch (action.type) {
     case GET_EMAILS:
