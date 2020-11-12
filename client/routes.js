@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {AddEmail} from './components/email-form'
 import {AddShoutout} from './components/shoutout-form'
+import EmailList from './components/emailList'
 import {me} from './store'
 
 /**
@@ -29,6 +30,7 @@ class Routes extends Component {
             <Route exact path="/home" component={UserHome} />
             <Route path="/home/addEmail" component={AddEmail} />
             <Route path="/home/addShoutout" component={AddShoutout} />
+            <Route path="/home/showEmails" component={EmailList} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

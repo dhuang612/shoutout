@@ -32,7 +32,6 @@ const mapDispatch = dispatch => {
       evt.preventDefault()
       const firstName = evt.target.firstName.value
       const email = evt.target.email.value
-      console.log('this is email', email)
       dispatch(addEmail(firstName, email))
     }
   }

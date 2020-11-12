@@ -45,7 +45,7 @@ router.get('/send', async (req, res, next) => {
       sender: 'no-reply@shoutout.com',
       receiver: 'dhuang684@gmail.com',
       name: 'some user',
-      welcome_url: 'localhost:8080/api/signup'
+      welcome_url: 'https://localhost:8080/api/login'
     }
     const sendEmail = sender.sendEmail(data)
     if (sendEmail) {
