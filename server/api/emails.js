@@ -28,9 +28,7 @@ router.post('/', async (req, res, next) => {
 router.get('/showAllEmails', async (req, res, next) => {
   try {
     const userId = req.user.id
-    console.log('this is what userId holds', userId)
     const user = await User.findOne({where: {id: userId}})
-    console.log(user)
     if (user) {
       const emailsToShow = await Emails.findAll({where: {userId: user.id}})
       if (emailsToShow) {
