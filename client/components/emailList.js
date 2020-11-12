@@ -7,14 +7,23 @@ export class EmailList extends Component {
   componentDidMount() {
     this.props.showAllEmails()
   }
-
+  //&& emails !== undefined
   render() {
-    const emails = this.props.emails
-    console.log(emails.data)
-    if (emails.data !== [] && emails.data !== undefined) {
+    const emails = this.props.emails.data
+    console.log(emails)
+    if (emails !== [] && emails !== undefined) {
       return (
         <div>
-          {emails.data.map(email => <div key={email.id}>{email.email}</div>)}
+          {emails.length ? (
+            emails.map(email => <div key={email.id}>{email.email}</div>)
+          ) : (
+            <div>
+              No emails{' '}
+              <div>
+                <Link to="/home/addEmail">add new emails</Link>
+              </div>
+            </div>
+          )}
         </div>
       )
     } else {
