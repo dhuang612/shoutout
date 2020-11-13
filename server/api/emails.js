@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Emails, User} = require('../db/models')
+const sender = require('../emails/mailer')
 module.exports = router
 
 //everything to do with adding emails
@@ -33,6 +34,28 @@ router.get('/showAllEmails', async (req, res, next) => {
       const emailsToShow = await Emails.findAll({where: {userId: user.id}})
       if (emailsToShow) {
         res.status(200).json(emailsToShow)
+      }
+    }
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.post('/sendInvite', async (req, res, next) => {
+  try {
+    if (req.body) {
+      console.log('req.body --->', req.body.email)
+      let data = {
+        templateName: 'welcome',
+        sender: 'no-reply@shoutout.com',
+        receiver: req.body.email,
+        name: req.body.firstName,
+        login_url: 'https://localhost:8080/auth/signup/invite'
+      }
+      const sendEmail = sender.sendEmail(data)
+      console.log(sendEmail)
+      if (sendEmail) {
+        res.status(200).send('successfully sent so!')
       }
     }
   } catch (error) {

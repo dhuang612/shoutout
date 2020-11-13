@@ -10,7 +10,11 @@ const getEmails = emails => ({type: GET_EMAILS, emails})
 export const addEmail = (firstName, email) => async dispatch => {
   try {
     const add = await axios.post('/api/emails', {firstName, email})
-    console.log(add)
+    const emailToSend = await axios.post('/api/emails/sendInvite', {
+      firstName,
+      email
+    })
+    console.log(emailToSend)
     // dispatch(getEmails(add))
   } catch (error) {
     console.error(error)
@@ -27,6 +31,16 @@ export const showEmails = () => async dispatch => {
     console.error(error)
   }
 }
+
+// export const sendInviteEmail = (email)=> async dispatch =>{
+//   try {
+//     const emailToSend = await axios.get('/api/emails/sendInvite', {email});
+//     // console.log(emailToSend)
+//     dispatch(emailToSend)
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 export default function(state = emails, action) {
   switch (action.type) {
