@@ -45,7 +45,7 @@ router.get('/send', async (req, res, next) => {
       sender: 'no-reply@shoutout.com',
       receiver: 'dhuang684@gmail.com',
       name: req.user.email,
-      welcome_url: 'https://localhost:8080/api/login'
+      welcome_url: 'https://shoutouts-the-app.herokuapp.com/auth/login'
     }
     const sendEmail = sender.sendEmail(data)
     if (sendEmail) {
