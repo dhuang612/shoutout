@@ -18,21 +18,28 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
+    const {inviteId, flag} = this.props
+    console.log(inviteId)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        {isLoggedIn && (
+        {isLoggedIn || inviteId === undefined ? (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
             <Route path="/home/addEmail" component={AddEmail} />
-            <Route path="/home/addShoutout" component={AddShoutout} />
             <Route path="/home/showEmails" component={EmailList} />
+            <Route path="/home/addShoutout" component={AddShoutout} />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/home" component={UserHome} />
+            <Route path="/home/addShoutout" component={AddShoutout} />
           </Switch>
         )}
+
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
@@ -47,7 +54,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userInfo: state.user
   }
 }
 

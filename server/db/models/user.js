@@ -27,7 +27,15 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  flag: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true}
+  flag: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  },
+  inviteId: {
+    type: Sequelize.INTEGER,
+    defaultValue: null
+  }
 })
 
 module.exports = User
