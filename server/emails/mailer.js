@@ -17,7 +17,8 @@ function sendEmail(data) {
     dynamic_template_data: {
       name: data.name,
       welcome_url: data.welcome_url,
-      login_url: data.login_url
+      login_url: data.login_url,
+      id: data.id
     }
   }
   //send the email

@@ -21,7 +21,7 @@ export const addEmail = (firstName, email) => async dispatch => {
   }
 }
 
-export const showEmails = () => async dispatch => {
+export const showEmails = id => async dispatch => {
   try {
     const user = await axios.get('/auth/me')
     const id = user.id
@@ -32,15 +32,15 @@ export const showEmails = () => async dispatch => {
   }
 }
 
-// export const sendInviteEmail = (email)=> async dispatch =>{
-//   try {
-//     const emailToSend = await axios.get('/api/emails/sendInvite', {email});
-//     // console.log(emailToSend)
-//     dispatch(emailToSend)
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
+export const sendInviteEmail = id => async dispatch => {
+  try {
+    const emailToSend = await axios.post('/api/emails/sendInvite', {id})
+    console.log(emailToSend)
+    // emailToSend
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export default function(state = emails, action) {
   switch (action.type) {

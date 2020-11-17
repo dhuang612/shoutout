@@ -42,10 +42,12 @@ router.post('/signup', async (req, res, next) => {
 //route to handle invited people // will need to send the id along from the invite side.
 router.post('/signup/invite', async (req, res, next) => {
   try {
+    console.log('we are hitting this route!')
     const user = await User.create(req.body)
-    if (req.body.inviteId) {
+
+    if (req.body.id) {
       user.flag = false
-      user.inviteId = req.body.inviteId
+      user.inviteId = req.body.id
       await user.save()
     }
     if (user.usedValidEmail(req.body.email)) {
