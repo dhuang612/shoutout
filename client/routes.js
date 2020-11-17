@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {AddEmail} from './components/email-form'
 import {AddShoutout} from './components/shoutout-form'
+import {SignupInvite} from './components/inviteSignup-form'
 import EmailList from './components/emailList'
 import {me} from './store'
 
@@ -24,7 +25,9 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/signup" component={Signup} />
+        <Route path="/signup/invite" component={SignupInvite} />
+
         {isLoggedIn || inviteId === undefined ? (
           <Switch>
             {/* Routes placed here are only available after logging in */}

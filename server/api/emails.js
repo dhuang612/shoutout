@@ -45,14 +45,16 @@ router.post('/sendInvite', async (req, res, next) => {
   try {
     if (req.body) {
       const name = req.body.firstName
-
-      console.log('req.body --->', req.body.email)
+      const userId = req.user.id
+      // console.log('userId is being passed', userId)
+      // console.log('req.body --->', req.body.email)
       let data = {
         templateName: 'welcome',
         sender: 'no-reply@shoutout.com',
         receiver: req.body.email,
         name: req.body.firstName,
-        login_url: 'https://shoutouts-the-app.herokuapp.com/auth/signup/invite'
+        login_url: 'https://shoutouts-the-app.herokuapp.com/signup/invite',
+        id: userId
       }
       const sendEmail = sender.sendEmail(data)
       console.log(sendEmail)
