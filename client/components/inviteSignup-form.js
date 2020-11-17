@@ -4,6 +4,7 @@ import {inviteAuth} from '../store'
 
 const InviteForm = props => {
   const {handleSubmit} = props
+  console.log(props)
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -33,6 +34,15 @@ const InviteForm = props => {
   )
 }
 
+const mapSignup = state => {
+  return {
+    // name: 'signup',
+    // displayName: 'Sign Up',
+    // error: state.user.error,
+    id: state.user
+  }
+}
+
 const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
@@ -45,4 +55,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const SignupInvite = connect(null, mapDispatch)(InviteForm)
+export const SignupInvite = connect(mapSignup, mapDispatch)(InviteForm)

@@ -48,15 +48,17 @@ export const auth = (email, password, method) => async dispatch => {
 
 export const inviteAuth = (email, password, id) => async dispatch => {
   //maybe try the res var instead?
-  let data
+  let res
   try {
-    data = await axios.post('/signup/invite', {email, password, id})
-    console.log(data)
+    console.log(email)
+    res = await axios.post('/auth/signup/invite', {email, password, id})
+    console.log('this is res', res)
+    // console.log(data)
   } catch (error) {
     console.error(error)
   }
   try {
-    dispatch(getUser(data.data))
+    dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
