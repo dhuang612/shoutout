@@ -28,12 +28,25 @@ router.post('/', async (req, res, next) => {
 
 router.get('/showAllEmails', async (req, res, next) => {
   try {
-    const userId = req.user.id
-    const user = await User.findOne({where: {id: userId}})
-    if (user) {
-      const emailsToShow = await Emails.findAll({where: {userId: user.id}})
-      if (emailsToShow) {
-        res.status(200).json(emailsToShow)
+    if (req.user.flag) {
+      const userId = req.user.id
+      const user = await User.findOne({where: {id: userId}})
+
+      if (user) {
+        const emailsToShow = await Emails.findAll({where: {userId: user.id}})
+        if (emailsToShow) {
+          res.status(200).json(emailsToShow)
+        }
+      }
+    } else {
+      const userId = req.user.inviteId
+      const user = await User.findOne({where: {id: userId}})
+
+      if (user) {
+        const emailsToShow = await Emails.findAll({where: {userId: user.id}})
+        if (emailsToShow) {
+          res.status(200).json(emailsToShow)
+        }
       }
     }
   } catch (error) {

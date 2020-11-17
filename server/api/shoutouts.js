@@ -10,6 +10,7 @@ router.post('/new', async (req, res, next) => {
     if (req.body) {
       let from
       const user = req.user
+      console.log('this is our user', user)
       if (!req.body.from) {
         from = 'N/A'
       }
