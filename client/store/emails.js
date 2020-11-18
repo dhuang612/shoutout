@@ -3,21 +3,37 @@ import axios from 'axios'
 
 const GET_EMAILS = 'GET_EMAILS'
 
+const GET_SINGLE_EMAIL = 'GET_SINGLE_EMAIL'
+
 const emails = []
 
 const getEmails = emails => ({type: GET_EMAILS, emails})
 
+const getSingleEmail = email => ({
+  type: GET_SINGLE_EMAIL,
+  email
+})
+
 export const addEmail = (firstName, email) => async dispatch => {
   try {
     const add = await axios.post('/api/emails', {firstName, email})
-    const emailToSend = await axios.post('/api/emails/sendInvite', {
-      firstName,
-      email
-    })
+
     console.log(emailToSend)
     // dispatch(getEmails(add))
   } catch (error) {
     console.error(error)
+  }
+}
+
+export const showSingleEmail = id => async dispatch => {
+  try {
+    const emailToFind = await axios.get(`/api/emails/${id}`)
+    console.log('this is what emailToFindHolds', emailToFind)
+    if (emailToFind) {
+      dispatch(getSingleEmail(emailToFind))
+    }
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -32,9 +48,12 @@ export const showEmails = id => async dispatch => {
   }
 }
 
-export const sendInviteEmail = id => async dispatch => {
+export const sendInviteEmail = (firstName, email) => async dispatch => {
   try {
-    const emailToSend = await axios.post('/api/emails/sendInvite', {id})
+    const emailToSend = await axios.post('/api/emails/sendInvite', {
+      firstName,
+      email
+    })
     console.log(emailToSend)
     // emailToSend
   } catch (error) {
@@ -46,6 +65,8 @@ export default function(state = emails, action) {
   switch (action.type) {
     case GET_EMAILS:
       return action.emails
+    case GET_SINGLE_EMAIL:
+      return action.email
     default:
       return state
   }
