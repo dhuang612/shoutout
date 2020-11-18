@@ -550,32 +550,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ShoutoutForm = function ShoutoutForm(props) {
-  var handleSubmit = props.handleSubmit;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: handleSubmit
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "name"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: "name",
-    type: "text"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "email"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: "email",
-    type: "text"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "message"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "message")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: "message",
-    type: "text"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "from"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "from")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: "from",
-    type: "text"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "submit"
-  }, "create shoutout!")));
+  var handleSubmit = props.handleSubmit,
+      showAvailableEmails = props.showAvailableEmails,
+      emails = props.emails;
+  var displayEmails;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    displayEmails = showAvailableEmails(); //having a second param of [] makes it only run once.
+  }, []);
+
+  if (emails.data) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "People who you can send shoutouts to:"), emails.data.map(function (email) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: email.id
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email.firstName), email.email);
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      onSubmit: handleSubmit
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "name"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      name: "name",
+      type: "text"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "email"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      name: "email",
+      type: "text"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "message"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "message")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      name: "message",
+      type: "text"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "from"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "from")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      name: "from",
+      type: "text"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "submit"
+    }, "create shoutout!")));
+  } else {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
+  }
+};
+
+var mapState = function mapState(state) {
+  return {
+    id: state.user,
+    emails: state.emails
+  };
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
@@ -587,11 +609,14 @@ var mapDispatch = function mapDispatch(dispatch) {
       var email = evt.target.email.value;
       var from = evt.target.from.value;
       dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_2__["addShoutout"])(name, message, email, from));
+    },
+    showAvailableEmails: function showAvailableEmails() {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_2__["showEmails"])());
     }
   };
 };
 
-var AddShoutout = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatch)(ShoutoutForm);
+var AddShoutout = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(ShoutoutForm);
 
 /***/ }),
 
@@ -687,7 +712,6 @@ function (_Component) {
     value: function render() {
       var emailToShow = '';
       var nameToShow = '';
-      var idToFind = '';
 
       if (this.props) {
         emailToShow = this.props.email.data.email;
@@ -1277,7 +1301,7 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, inviteAuth, logout, addShoutout, addEmail, showSingleEmail, showEmails, sendInviteEmail */
+/*! exports provided: default, me, auth, inviteAuth, logout, addEmail, showSingleEmail, showEmails, sendInviteEmail, addShoutout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

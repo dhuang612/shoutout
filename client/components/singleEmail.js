@@ -36,7 +36,6 @@ class SingleEmail extends Component {
   render() {
     let emailToShow = ''
     let nameToShow = ''
-    let idToFind = ''
     if (this.props) {
       emailToShow = this.props.email.data.email
       nameToShow = this.props.email.data.firstName
