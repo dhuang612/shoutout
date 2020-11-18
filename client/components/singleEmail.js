@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+
 import {connect} from 'react-redux'
 import {sendInviteEmail, showSingleEmail} from '../store'
 
@@ -19,6 +20,7 @@ class SingleEmail extends Component {
   }
   handleClose() {
     this.setState({show: !this.state.show})
+    this.props.history.push('/home/showEmails')
   }
   handleSubmit() {
     if (this.props) {
@@ -26,6 +28,9 @@ class SingleEmail extends Component {
       let emailAddresOfPerson = this.props.email.data.email
       this.props.sendOutEmailInvite(firstNameOfPerson, emailAddresOfPerson)
     }
+    setTimeout(() => {
+      this.props.history.push('/home/showEmails')
+    }, 2000)
   }
 
   render() {
@@ -35,13 +40,8 @@ class SingleEmail extends Component {
     if (this.props) {
       emailToShow = this.props.email.data.email
       nameToShow = this.props.email.data.firstName
-
-      console.log(
-        'this is what the react side id holds',
-        this.props.email.data.id
-      )
     }
-    // console.log(this.props.sendOutEmailInvite(idToFind))
+
     return (
       <>
         <Modal show={this.state.show} onHide={this.handleClose}>
