@@ -54,6 +54,15 @@ router.get('/showAllEmails', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const emailToSend = await Emails.findByPk(req.params.id)
+    res.send(emailToSend)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/sendInvite', async (req, res, next) => {
   try {
     if (req.body) {

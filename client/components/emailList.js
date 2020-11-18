@@ -13,7 +13,11 @@ export class EmailList extends Component {
       return (
         <div>
           {emails.length ? (
-            emails.map(({id, email}) => <div key={id}>{email}</div>)
+            emails.map(({id, email}) => (
+              <div key={id}>
+                <Link to={`/home/showEmails/${id}`}>{email}</Link>
+              </div>
+            ))
           ) : (
             <div>
               No emails{' '}
