@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 //action types
 
 const GET_EMAILS = 'GET_EMAILS'
@@ -20,6 +21,7 @@ export const addEmail = (firstName, email) => async dispatch => {
 
     console.log(emailToSend)
     // dispatch(getEmails(add))
+    history.push('/home/showEmails')
   } catch (error) {
     console.error(error)
   }

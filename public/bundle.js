@@ -665,15 +665,22 @@ function (_Component) {
       this.setState({
         show: !this.state.show
       });
+      this.props.history.push('/home/showEmails');
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
+      var _this2 = this;
+
       if (this.props) {
         var firstNameOfPerson = this.props.email.data.firstName;
         var emailAddresOfPerson = this.props.email.data.email;
         this.props.sendOutEmailInvite(firstNameOfPerson, emailAddresOfPerson);
       }
+
+      setTimeout(function () {
+        _this2.props.history.push('/home/showEmails');
+      }, 2000);
     }
   }, {
     key: "render",
@@ -685,9 +692,7 @@ function (_Component) {
       if (this.props) {
         emailToShow = this.props.email.data.email;
         nameToShow = this.props.email.data.firstName;
-        console.log('this is what the react side id holds', this.props.email.data.id);
-      } // console.log(this.props.sendOutEmailInvite(idToFind))
-
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
         show: this.state.show,
@@ -1036,14 +1041,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendInviteEmail", function() { return sendInviteEmail; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+
  //action types
 
 var GET_EMAILS = 'GET_EMAILS';
-var GET_SINGLE_EMAIL = "GET_SINGLE_EMAIL";
+var GET_SINGLE_EMAIL = 'GET_SINGLE_EMAIL';
 var emails = [];
 
 var getEmails = function getEmails(emails) {
@@ -1083,20 +1090,21 @@ var addEmail = function addEmail(firstName, email) {
                 add = _context.sent;
                 console.log(emailToSend); // dispatch(getEmails(add))
 
-                _context.next = 10;
+                _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home/showEmails');
+                _context.next = 11;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[0, 8]]);
       }));
 
       return function (_x) {
