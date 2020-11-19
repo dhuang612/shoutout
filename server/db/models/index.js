@@ -11,8 +11,14 @@ const db = require('../db')
 
 User.hasMany(Shoutouts)
 Shoutouts.belongsTo(User)
+
 User.hasMany(Emails)
 Emails.belongsTo(User)
+
+//created a 1 to 1 relationship
+// Emails.belongsTo(Shoutouts)
+// Shoutouts.hasOne(Emails)
+
 // console.log(User)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
