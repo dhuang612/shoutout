@@ -27,10 +27,11 @@ class SingleShoutout extends Component {
     if (this.props) {
       let emailAddress = this.props.shoutout.data.email
       let msg = this.props.shoutout.data.message
-      this.props.sendShoutout(emailAddress, msg)
+      let name = this.props.shoutout.data.name
+      this.props.sendShoutout(emailAddress, msg, name)
     }
     setTimeout(() => {
-      this.props.history.push('/home/showEmails')
+      this.props.history.push('/home/showShowouts')
     }, 2000)
   }
 
@@ -77,7 +78,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     displaySingleShoutout: id => dispatch(showSingleShoutout(id)),
-    sendShoutout: (email, msg) => dispatch(sendShoutouts(email, msg))
+    sendShoutout: (email, msg, name) =>
+      dispatch(sendShoutouts(email, msg, name))
   }
 }
 

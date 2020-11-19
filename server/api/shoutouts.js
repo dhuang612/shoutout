@@ -68,13 +68,13 @@ router.post('/send', async (req, res, next) => {
   try {
     if (req.body) {
       const email = req.body.email
-      const msg = req.body.message
-      console.log('this is msg', msg)
+      const msg = req.body.msg
+      const name = req.body.name
       let data = {
         templateName: 'shoutouts',
         sender: 'no-reply@shoutout.com',
         receiver: email,
-        name: req.body.name,
+        name,
         message: msg,
         welcome_url: 'https://shoutouts-the-app.herokuapp.com/auth/login'
       }
