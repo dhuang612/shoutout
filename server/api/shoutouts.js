@@ -67,16 +67,23 @@ router.get('/:id', async (req, res, next) => {
 router.post('/send', async (req, res, next) => {
   try {
     if (req.body) {
+      let from
       const email = req.body.email
       const msg = req.body.msg
       const name = req.body.name
+      if (!req.body.from) {
+        from = 'This person chose to send this in secret'
+      }
+      console.log('this is what from holds', from)
       let data = {
         templateName: 'shoutouts',
         sender: 'no-reply@shoutout.com',
         receiver: email,
+        from: req.body.from || from,
         name,
         message: msg,
-        welcome_url: 'https://shoutouts-the-app.herokuapp.com/auth/login'
+        welcome_url: 'https://shoutouts-the-app.herokuapp.com/auth/login',
+        person: from
       }
       const sendEmail = sender.sendEmail(data)
       if (sendEmail) {
