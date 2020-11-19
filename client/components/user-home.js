@@ -24,6 +24,9 @@ export const UserHome = props => {
           <div>
             <Link to="/home/showEmails">show email list</Link>
           </div>
+          <div>
+            <Link to="/home/showShoutouts">show shoutouts list</Link>
+          </div>
         </div>
       </div>
     )
