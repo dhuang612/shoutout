@@ -52,9 +52,13 @@ export const showSingleShoutout = id => async dispatch => {
   }
 }
 
-export const sendShoutouts = (email, msg) => async dispatch => {
+export const sendShoutouts = (email, msg, name) => async dispatch => {
   try {
-    const shoutoutToSend = await axios.post('/api/shoutouts/send', {email, msg})
+    const shoutoutToSend = await axios.post('/api/shoutouts/send', {
+      email,
+      msg,
+      name
+    })
     console.log(shoutoutToSend)
   } catch (error) {
     console.error(error)

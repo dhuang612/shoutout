@@ -935,11 +935,12 @@ function (_Component) {
       if (this.props) {
         var emailAddress = this.props.shoutout.data.email;
         var msg = this.props.shoutout.data.message;
-        this.props.sendShoutout(emailAddress, msg);
+        var name = this.props.shoutout.data.name;
+        this.props.sendShoutout(emailAddress, msg, name);
       }
 
       setTimeout(function () {
-        _this2.props.history.push('/home/showEmails');
+        _this2.props.history.push('/home/showShowouts');
       }, 2000);
     }
   }, {
@@ -984,8 +985,8 @@ var mapDispatch = function mapDispatch(dispatch) {
     displaySingleShoutout: function displaySingleShoutout(id) {
       return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_4__["showSingleShoutout"])(id));
     },
-    sendShoutout: function sendShoutout(email, msg) {
-      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_4__["sendShoutouts"])(email, msg));
+    sendShoutout: function sendShoutout(email, msg, name) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_4__["sendShoutouts"])(email, msg, name));
     }
   };
 };
@@ -1638,8 +1639,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var CREATE_SHOUTOUT = 'CREATE_SHOUTOUT';
-var GET_SHOUTOUTS = "GET_SHOUTOUTS";
-var GET_SINGLE_SHOUTOUT = "GET_SINGLE_SHOUTOUT";
+var GET_SHOUTOUTS = 'GET_SHOUTOUTS';
+var GET_SINGLE_SHOUTOUT = 'GET_SINGLE_SHOUTOUT';
 var shoutout = {};
 
 var getShoutouts = function getShoutouts(shoutouts) {
@@ -1775,14 +1776,15 @@ var showSingleShoutout = function showSingleShoutout(id) {
                   dispatch(getSingleShoutout(shoutoutToFind));
                 }
 
-                _context3.next = 9;
+                _context3.next = 10;
                 break;
 
               case 7:
                 _context3.prev = 7;
                 _context3.t0 = _context3["catch"](0);
+                console.error(_context3.t0);
 
-              case 9:
+              case 10:
               case "end":
                 return _context3.stop();
             }
@@ -1796,7 +1798,7 @@ var showSingleShoutout = function showSingleShoutout(id) {
     }()
   );
 };
-var sendShoutouts = function sendShoutouts(email, msg) {
+var sendShoutouts = function sendShoutouts(email, msg, name) {
   return (
     /*#__PURE__*/
     function () {
@@ -1812,7 +1814,8 @@ var sendShoutouts = function sendShoutouts(email, msg) {
                 _context4.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/shoutouts/send', {
                   email: email,
-                  msg: msg
+                  msg: msg,
+                  name: name
                 });
 
               case 3:
