@@ -24,31 +24,45 @@ async function seed() {
   // console.log(users[0].email)
   if (users) {
     // const shoutouts = await userOne.getShoutouts()
-    const firstShoutout = await userOne.createShoutout({
-      name: users[1].email,
-      message: 'another shoutout!',
-      from: users[2].email
-    })
-    const secondShoutout = await userTwo.createShoutout({
-      name: users[0].email,
-      message: 'second test shoutout!',
-      from: users[1].email
-    })
-    const thirdShoutout = await userThree.createShoutout({
-      name: users[2].email,
-      message: 'final new shoutout!',
-      from: users[0].email
-    })
-
-    const addEmail = await userThree.createEmail({
+    let id = 1
+    let emailObj = {
       firstName: 'Bob',
       email: 'bob@email.com'
-    })
+    }
 
-    console.log(`seeded ${users.length} users`)
-    // console.log('this is what shoutout stores--> ', shoutouts)
+    const addEmail = await userThree.addEmail(id, emailObj)
 
-    console.log(`seeded successfully`)
+    if (addEmail.email) {
+      let paramsObj = {
+        name: 'Dan',
+        email: 'bob@email.com',
+        message: 'test msg',
+        userId: userThree.id
+      }
+
+      const addShoutout = await userThree.createShoutout(paramsObj)
+      // console.log(Object.keys(userThree.__proto__))
+      // console.log(Object.keys(newShoutout.__proto__));
+      console.log(`seeded ${users.length} users`)
+      if (addShoutout) {
+        // console.log('this is what addEmail holds', addEmail)
+        const addEmail = await userThree.createEmail({
+          firstName: 'Dan',
+          email: 'dan@email.com'
+        })
+        let setId = 2
+        let shoutoutObj = {
+          shoutoutId: addShoutout.id
+        }
+        const setEmail = await userThree.setEmails(id, shoutoutObj)
+        //  const setShoutout = await userThree.setEmails(id, emailObj);
+        // console.log(`seeded ${addShoutout.length} shoutouts`)
+        // console.log('this is what addInfo holds',addInfo)
+        // console.log(`created ${addShoutout.length} shoutouts`)
+        // console.log(addShoutout)
+      }
+      console.log(`seeded successfully`)
+    }
   }
 }
 

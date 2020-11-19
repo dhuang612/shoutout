@@ -10,7 +10,7 @@ router.post('/new', async (req, res, next) => {
     if (req.body) {
       let from
       const user = req.user
-      console.log('this is our user', user)
+
       if (!req.body.from) {
         from = 'N/A'
       }
@@ -19,14 +19,17 @@ router.post('/new', async (req, res, next) => {
       if (!checkEmail) {
         res.status(401).send('email doesnt exist')
       } else {
-        //magic method given to us by sequelize
-        const createNewSO = await user.createShoutout({
+        let paramsObj = {
           name: req.body.name,
           message: req.body.message,
           email: req.body.email,
           from: req.body.from || from
-        })
+        }
+        let id = req.user.id
+        //magic method given to us by sequelize
+        const createNewSO = await user.createShoutout(paramsObj)
         if (createNewSO) {
+          console.log('this is our new shoutout', createNewSO)
           res.status(200).send('successfully made new SO')
         }
       }

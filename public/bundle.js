@@ -1112,23 +1112,22 @@ var addEmail = function addEmail(firstName, email) {
 
               case 3:
                 add = _context.sent;
-                console.log(emailToSend); // dispatch(getEmails(add))
-
+                // dispatch(getEmails(add))
                 _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home/showEmails');
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 11:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 7]]);
       }));
 
       return function (_x) {
@@ -1240,8 +1239,7 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
       var _ref4 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee4(dispatch) {
-        var _emailToSend;
-
+        var emailToSend;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -1254,8 +1252,8 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
                 });
 
               case 3:
-                _emailToSend = _context4.sent;
-                console.log(_emailToSend); // emailToSend
+                emailToSend = _context4.sent;
+                console.log(emailToSend); // emailToSend
 
                 _context4.next = 10;
                 break;
@@ -48057,7 +48055,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
