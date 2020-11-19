@@ -19,7 +19,8 @@ function sendEmail(data) {
       welcome_url: data.welcome_url,
       login_url: data.login_url,
       message: data.message,
-      id: data.id
+      id: data.id,
+      person_who_sent: data.person
     }
   }
   //send the email
