@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const {User, Emails} = require('../db/models')
+const {User, Emails, Shoutouts} = require('../db/models')
+const Shoutout = require('../db/models/shoutout')
 const sender = require('../emails/mailer')
 
 module.exports = router
@@ -39,21 +40,48 @@ router.post('/new', async (req, res, next) => {
   }
 })
 
+router.get('/showAllShoutouts', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const shoutouts = await Shoutouts.findAll({where: {userId}})
+    if (shoutouts) {
+      res.status(200).json(shoutouts)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const shoutoutToSend = await Shoutouts.findByPk(req.params.id)
+    res.send(shoutoutToSend)
+  } catch (error) {
+    next(error)
+  }
+})
+
 //edit eventually maybe?
 
 //send the shoutout
-router.get('/send', async (req, res, next) => {
+router.post('/send', async (req, res, next) => {
   try {
-    let data = {
-      templateName: 'shoutouts',
-      sender: 'no-reply@shoutout.com',
-      receiver: 'dhuang684@gmail.com',
-      name: req.user.email,
-      welcome_url: 'https://shoutouts-the-app.herokuapp.com/auth/login'
-    }
-    const sendEmail = sender.sendEmail(data)
-    if (sendEmail) {
-      res.status(200).send('successfully sent so!')
+    if (req.body) {
+      const email = req.body.email
+      const msg = req.body.message
+      console.log('this is msg', msg)
+      let data = {
+        templateName: 'shoutouts',
+        sender: 'no-reply@shoutout.com',
+        receiver: email,
+        name: req.body.name,
+        message: msg,
+        welcome_url: 'https://shoutouts-the-app.herokuapp.com/auth/login'
+      }
+      const sendEmail = sender.sendEmail(data)
+      if (sendEmail) {
+        res.status(200).send('successfully sent so!')
+      }
     }
   } catch (error) {
     console.error(error)

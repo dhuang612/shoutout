@@ -20,8 +20,6 @@ async function seed() {
   const userTwo = users[1]
   const userThree = users[2]
 
-  // console.log(userOne)
-  // console.log(users[0].email)
   if (users) {
     // const shoutouts = await userOne.getShoutouts()
     let id = 1
@@ -34,7 +32,7 @@ async function seed() {
 
     if (addEmail.email) {
       let paramsObj = {
-        name: 'Dan',
+        name: 'Bob',
         email: 'bob@email.com',
         message: 'test msg',
         userId: userThree.id

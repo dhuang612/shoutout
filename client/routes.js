@@ -7,7 +7,9 @@ import {AddEmail} from './components/email-form'
 import {AddShoutout} from './components/shoutout-form'
 import {SignupInvite} from './components/inviteSignup-form'
 import EmailList from './components/emailList'
+import ShoutoutList from './components/shoutoutList'
 import SingleEmail from './components/singleEmail'
+import SingleShout from './components/singleShoutout'
 import {me} from './store'
 
 /**
@@ -37,11 +39,15 @@ class Routes extends Component {
             <Route exact path="/home/showEmails" component={EmailList} />
             <Route path="/home/showEmails/:id" component={SingleEmail} />
             <Route path="/home/addShoutout" component={AddShoutout} />
+            <Route exact path="/home/showShoutouts" component={ShoutoutList} />
+            <Route path="/home/showShoutouts/:id" component={SingleShout} />
           </Switch>
         ) : (
           <Switch>
             <Route exact path="/home" component={UserHome} />
             <Route path="/home/addShoutout" component={AddShoutout} />
+            <Route exact path="/home/showShoutouts" component={ShoutoutList} />
+            <Route path="/home/showShoutouts/:id" component={SingleShout} />
           </Switch>
         )}
 
