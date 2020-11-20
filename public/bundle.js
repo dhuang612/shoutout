@@ -156,9 +156,7 @@ var AuthForm = function AuthForm(props) {
     type: "password"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
-  }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/auth/google"
-  }, displayName, " with Google"));
+  }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")));
 };
 /**
  * CONTAINER
@@ -559,11 +557,11 @@ var ShoutoutForm = function ShoutoutForm(props) {
   }, []);
 
   if (emails.data) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "People who you can send shoutouts to:"), emails.data.map(function (email) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "People who you can send shoutouts to:"), emails.data.length !== 0 ? emails.data.map(function (email) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: email.id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email.firstName), email.email);
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "There aren't people to send shoutouts to yet.."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "name"
@@ -793,17 +791,11 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      var _this2 = this;
-
       if (this.props) {
         var firstNameOfPerson = this.props.email.data.firstName;
         var emailAddresOfPerson = this.props.email.data.email;
         this.props.sendOutEmailInvite(firstNameOfPerson, emailAddresOfPerson);
       }
-
-      setTimeout(function () {
-        _this2.props.history.push('/home/showEmails');
-      }, 2000);
     }
   }, {
     key: "render",
@@ -930,18 +922,15 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      var _this2 = this;
-
       if (this.props) {
         var emailAddress = this.props.shoutout.data.email;
         var msg = this.props.shoutout.data.message;
         var name = this.props.shoutout.data.name;
         this.props.sendShoutout(emailAddress, msg, name);
-      }
+      } // setTimeout(() => {
+      //   this.props.history.push('/home/showShowouts')
+      // }, 2000)
 
-      setTimeout(function () {
-        _this2.props.history.push('/home/showShowouts');
-      }, 2000);
     }
   }, {
     key: "render",
@@ -1208,7 +1197,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/signup/invite",
         component: _components_inviteSignup_form__WEBPACK_IMPORTED_MODULE_7__["SignupInvite"]
-      }), isLoggedIn || inviteId === undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), isLoggedIn && !inviteId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
@@ -1232,7 +1221,9 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/home/showShoutouts/:id",
         component: _components_singleShoutout__WEBPACK_IMPORTED_MODULE_11__["default"]
-      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["Login"]
+      }), isLoggedIn && inviteId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
@@ -1246,7 +1237,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/home/showShoutouts/:id",
         component: _components_singleShoutout__WEBPACK_IMPORTED_MODULE_11__["default"]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Login"]
       }));
     }
@@ -1513,22 +1504,27 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
 
               case 3:
                 emailToSend = _context4.sent;
+
+                if (emailToSend.data) {
+                  _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home/showEmails');
+                }
+
                 console.log(emailToSend); // emailToSend
 
-                _context4.next = 10;
+                _context4.next = 11;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 8:
+                _context4.prev = 8;
                 _context4.t0 = _context4["catch"](0);
                 console.error(_context4.t0);
 
-              case 10:
+              case 11:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 8]]);
       }));
 
       return function (_x4) {
@@ -1828,21 +1824,26 @@ var sendShoutouts = function sendShoutouts(email, msg, name) {
 
               case 3:
                 shoutoutToSend = _context4.sent;
-                console.log(shoutoutToSend);
-                _context4.next = 10;
+                console.log('shoutoutToSend holds', shoutoutToSend);
+
+                if (shoutoutToSend) {
+                  _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home');
+                }
+
+                _context4.next = 11;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 8:
+                _context4.prev = 8;
                 _context4.t0 = _context4["catch"](0);
                 console.error(_context4.t0);
 
-              case 10:
+              case 11:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 8]]);
       }));
 
       return function (_x4) {
