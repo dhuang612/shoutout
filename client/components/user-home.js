@@ -37,6 +37,10 @@ export const UserHome = props => {
           <h3>Welcome, {email}</h3>
         </div>
         <Link to="/home/addShoutout">create a new shoutout</Link>
+        <div>
+          {' '}
+          <Link to="/home/showShoutouts">show shoutouts list</Link>
+        </div>
       </div>
     )
   }

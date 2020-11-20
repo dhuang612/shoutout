@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 const CREATE_SHOUTOUT = 'CREATE_SHOUTOUT'
 
@@ -24,7 +25,9 @@ export const addShoutout = (name, message, email, from) => async dispatch => {
       email,
       from
     })
-    console.log(add)
+    if (add.data) {
+      history.push('/home/showShoutouts')
+    }
   } catch (error) {
     console.error(error)
   }
