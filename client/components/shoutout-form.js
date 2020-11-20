@@ -43,7 +43,7 @@ const ShoutoutForm = props => {
             <label htmlFor="message">
               <small>message</small>
             </label>
-            <input name="message" type="text" />
+            <textarea name="message" type="text" />
           </div>
           <div>
             <label htmlFor="from">

@@ -1,5 +1,19 @@
-body {
-  font-family: sans-serif;
+#body {
+  background-color: #c2d6d6;
+  font-family: 'Oswald', sans-serif;
+}
+
+#header {
+  text-align: center;
+}
+
+#text {
+  font-size: 65px;
+  font-family: 'Kaushan Script', cursive;
+}
+
+#loggedIn {
+  text-align: left;
 }
 
 a {
@@ -13,6 +27,10 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+}
+
+#auth {
+  text-align: left;
 }
 
 form div {
