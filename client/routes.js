@@ -30,10 +30,9 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route path="/signup/invite" component={SignupInvite} />
-
-        {isLoggedIn || inviteId === undefined ? (
+        {isLoggedIn && !inviteId ? (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
+            {/* Routes placed here are only available after logging in as a original user */}
             <Route exact path="/home" component={UserHome} />
             <Route path="/home/addEmail" component={AddEmail} />
             <Route exact path="/home/showEmails" component={EmailList} />
@@ -43,16 +42,19 @@ class Routes extends Component {
             <Route path="/home/showShoutouts/:id" component={SingleShout} />
           </Switch>
         ) : (
+          <Route component={Login} />
+        )}
+        {isLoggedIn && inviteId ? (
           <Switch>
+            {/*routes available to invited user */}
             <Route exact path="/home" component={UserHome} />
             <Route path="/home/addShoutout" component={AddShoutout} />
             <Route exact path="/home/showShoutouts" component={ShoutoutList} />
             <Route path="/home/showShoutouts/:id" component={SingleShout} />
           </Switch>
+        ) : (
+          <Route component={Login} />
         )}
-
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
       </Switch>
     )
   }
