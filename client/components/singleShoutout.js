@@ -30,9 +30,9 @@ class SingleShoutout extends Component {
       let name = this.props.shoutout.data.name
       this.props.sendShoutout(emailAddress, msg, name)
     }
-    setTimeout(() => {
-      this.props.history.push('/home/showShowouts')
-    }, 2000)
+    // setTimeout(() => {
+    //   this.props.history.push('/home/showShowouts')
+    // }, 2000)
   }
 
   render() {

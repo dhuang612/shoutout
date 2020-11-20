@@ -54,6 +54,9 @@ export const sendInviteEmail = (firstName, email) => async dispatch => {
       firstName,
       email
     })
+    if (emailToSend.data) {
+      history.push('/home/showEmails')
+    }
     console.log(emailToSend)
     // emailToSend
   } catch (error) {

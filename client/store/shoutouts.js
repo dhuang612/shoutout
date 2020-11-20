@@ -62,7 +62,10 @@ export const sendShoutouts = (email, msg, name) => async dispatch => {
       msg,
       name
     })
-    console.log(shoutoutToSend)
+    console.log('shoutoutToSend holds', shoutoutToSend)
+    if (shoutoutToSend) {
+      history.push('/home')
+    }
   } catch (error) {
     console.error(error)
   }
