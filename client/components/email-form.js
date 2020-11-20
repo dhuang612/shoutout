@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addEmail} from '../store'
+import Button from 'react-bootstrap/Button'
 
 const EmailForm = props => {
   const {emails, handleSubmit, error} = props
@@ -20,7 +21,9 @@ const EmailForm = props => {
           </label>
           <input name="email" type="text" />
         </div>
-        <button type="submit">add email</button>
+        <Button variant="success" type="submit">
+          add email
+        </Button>
       </form>
     </div>
   )

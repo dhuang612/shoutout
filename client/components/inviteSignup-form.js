@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {inviteAuth} from '../store'
+import Button from 'react-bootstrap/Button'
 
 const InviteForm = props => {
   const {handleSubmit} = props
@@ -27,7 +28,9 @@ const InviteForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button type="submit">signup</button>
+          <Button variant="primary" type="submit">
+            signup
+          </Button>
         </div>
       </form>
     </div>

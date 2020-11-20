@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {addShoutout, showEmails} from '../store'
 import './shoutout-form.css'
+import Button from 'react-bootstrap/Button'
 
 const ShoutoutForm = props => {
   const {handleSubmit, showAvailableEmails, emails} = props
@@ -55,7 +56,9 @@ const ShoutoutForm = props => {
             <textarea id="textarea" name="message" type="text" />
           </div>
           <div id="submit">
-            <button type="submit">create shoutout!</button>
+            <Button variant="success" type="submit">
+              create shoutout!
+            </Button>
           </div>
         </form>
       </div>
