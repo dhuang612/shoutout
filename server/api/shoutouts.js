@@ -48,6 +48,8 @@ router.get('/showAllShoutouts', async (req, res, next) => {
     const shoutouts = await Shoutouts.findAll({where: {userId}})
     if (shoutouts) {
       res.status(200).json(shoutouts)
+    } else {
+      res.status(404).send('No shoutouts!')
     }
   } catch (error) {
     next(error)
@@ -76,7 +78,6 @@ router.post('/send', async (req, res, next) => {
       if (!req.body.from) {
         from = 'This person chose to send this in secret'
       }
-      console.log('this is what from holds', from)
       let data = {
         templateName: 'shoutouts',
         sender: 'no-reply@shoutout.com',

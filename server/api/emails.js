@@ -36,6 +36,8 @@ router.get('/showAllEmails', async (req, res, next) => {
         const emailsToShow = await Emails.findAll({where: {userId: user.id}})
         if (emailsToShow) {
           res.status(200).json(emailsToShow)
+        } else {
+          res.send('No emails to show')
         }
       }
     } else {
