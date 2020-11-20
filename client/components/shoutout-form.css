@@ -1,0 +1,35 @@
+#emailInfo {
+  text-align: center;
+}
+
+.shoutout-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  width: 200px;
+}
+
+input {
+  display: flex;
+}
+
+#message {
+  align-self: flex-end;
+  flex-grow: 1;
+  margin-top: 15px;
+  margin-left: 45px;
+}
+
+#message label {
+  display: flex;
+  justify-content: center;
+}
+
+#submit {
+  align-self: flex-end;
+  align-self: center;
+  flex-grow: 4;
+  flex-basis: auto;
+}

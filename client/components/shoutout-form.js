@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {addShoutout, showEmails} from '../store'
+import './shoutout-form.css'
 
 const ShoutoutForm = props => {
   const {handleSubmit, showAvailableEmails, emails} = props
@@ -15,43 +16,47 @@ const ShoutoutForm = props => {
   if (emails.data) {
     return (
       <div>
-        <p>People who you can send shoutouts to:</p>
-        {emails.data.length !== 0 ? (
-          emails.data.map(email => (
-            <div key={email.id}>
-              <div>{email.firstName}</div>
-              {email.email}
-            </div>
-          ))
-        ) : (
-          <div>There aren't people to send shoutouts to yet..</div>
-        )}
-        <form onSubmit={handleSubmit}>
-          <div>
+        <div id="emailInfo">
+          <p>People who you can send shoutouts to:</p>
+          {emails.data.length !== 0 ? (
+            emails.data.map(email => (
+              <div key={email.id}>
+                <div>{email.firstName}</div>
+                {email.email}
+              </div>
+            ))
+          ) : (
+            <div>There aren't people to send shoutouts to yet..</div>
+          )}
+        </div>
+        <form id="form" onSubmit={handleSubmit}>
+          <div className="shoutout-input">
             <label htmlFor="name">
               <small>name</small>
             </label>
             <input name="name" type="text" />
           </div>
-          <div>
+          <div className="shoutout-input">
             <label htmlFor="email">
               <small>Email</small>
             </label>
             <input name="email" type="text" />
           </div>
-          <div>
-            <label htmlFor="message">
-              <small>message</small>
-            </label>
-            <textarea name="message" type="text" />
-          </div>
-          <div>
+          <div className="shoutout-input">
             <label htmlFor="from">
               <small>from</small>
             </label>
             <input name="from" type="text" />
           </div>
-          <button type="submit">create shoutout!</button>
+          <div id="message">
+            <label htmlFor="message">
+              <small>message</small>
+            </label>
+            <textarea id="textarea" name="message" type="text" />
+          </div>
+          <div id="submit">
+            <button type="submit">create shoutout!</button>
+          </div>
         </form>
       </div>
     )

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {showShoutouts} from '../store'
+import './shoutoutList.css'
 
 export class ShoutoutList extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ export class ShoutoutList extends Component {
     const shoutouts = this.props.shoutouts.data
     if (shoutouts !== [] && shoutouts !== undefined) {
       return (
-        <div>
+        <div id="shoutouts">
           {shoutouts.length ? (
             shoutouts.map(({id, name, email}) => (
               <div key={id}>
@@ -22,9 +23,9 @@ export class ShoutoutList extends Component {
               </div>
             ))
           ) : (
-            <div>
+            <div id="noShoutouts">
               No shoutouts
-              <div>
+              <div className="link">
                 <Link to="/home/addShoutout">add new shoutout</Link>
               </div>
             </div>
