@@ -156,7 +156,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
-/* harmony import */ var _auth_form_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth-form.css */ "./client/components/auth-form.css");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _auth_form_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth-form.css */ "./client/components/auth-form.css");
+
 
 
 
@@ -175,7 +177,7 @@ var AuthForm = function AuthForm(props) {
     onSubmit: handleSubmit,
     name: name
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "authInfo"
+    className: "authInfo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     id: "email",
     htmlFor: "email"
@@ -183,13 +185,14 @@ var AuthForm = function AuthForm(props) {
     name: "email",
     type: "text"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "authInfo"
+    className: "authInfo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "password",
     type: "password"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "primary",
     type: "submit"
   }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")));
 };
@@ -260,6 +263,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+
 
 
 
@@ -280,7 +285,8 @@ var EmailForm = function EmailForm(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "email",
     type: "text"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "success",
     type: "submit"
   }, "add email")));
 };
@@ -402,7 +408,7 @@ function (_Component) {
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "noEmails"
         }, "No emails", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "link"
+          className: "link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           to: "/home/addEmail"
         }, "add new emails"))));
@@ -478,6 +484,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+
 
 
 
@@ -503,7 +511,8 @@ var InviteForm = function InviteForm(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "password",
     type: "password"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "primary",
     type: "submit"
   }, "signup"))));
 };
@@ -651,6 +660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
 /* harmony import */ var _shoutout_form_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shoutout-form.css */ "./client/components/shoutout-form.css");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+
 
 
 
@@ -676,21 +687,21 @@ var ShoutoutForm = function ShoutoutForm(props) {
       id: "form",
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      "class": "shoutout-input"
+      className: "shoutout-input"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "name"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       name: "name",
       type: "text"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      "class": "shoutout-input"
+      className: "shoutout-input"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "email"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       name: "email",
       type: "text"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      "class": "shoutout-input"
+      className: "shoutout-input"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "from"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "from")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -706,7 +717,8 @@ var ShoutoutForm = function ShoutoutForm(props) {
       type: "text"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "submit"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      variant: "success",
       type: "submit"
     }, "create shoutout!"))));
   } else {
@@ -844,7 +856,7 @@ function (_Component) {
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "noShoutouts"
         }, "No shoutouts", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "link"
+          className: "link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           to: "/home/addShoutout"
         }, "add new shoutout"))));
@@ -16496,7 +16508,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".authInfo{\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n\n}\n\n#email{\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n\n}\n", "",{"version":3,"sources":["webpack://./client/components/auth-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,iBAAiB;EACjB,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;;AAEpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;;AAEpB","sourcesContent":[".authInfo{\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n\n}\n\n#email{\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n}\n\n#email {\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/auth-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,iBAAiB;EACjB,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":[".authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n}\n\n#email {\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16521,7 +16533,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#emails{\n  margin-left: 15px;\n}\n\n#noEmails{\n  margin-left: 15px;\n}\n\n.link{\n  margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/emailList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#emails{\n  margin-left: 15px;\n}\n\n#noEmails{\n  margin-left: 15px;\n}\n\n.link{\n  margin-left: 30px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#emails {\n  margin-left: 15px;\n}\n\n#noEmails {\n  margin-left: 15px;\n}\n\n.link {\n  margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/emailList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#emails {\n  margin-left: 15px;\n}\n\n#noEmails {\n  margin-left: 15px;\n}\n\n.link {\n  margin-left: 30px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16546,7 +16558,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#emailInfo{\n  text-align: center;\n}\n\n\n\n.shoutout-input{\n display:flex;\n flex-direction: column;\n justify-content: center;\n align-items: center;\n margin-left: 40px;\n width:200px;\n\n}\n\ninput{\n  display: flex;\n}\n\n#message{\n align-self: flex-end;\n flex-grow: 1;\n margin-top: 15px;\n margin-left: 45px;\n}\n\n#message label{\n  display: flex;\n  justify-content: center;\n}\n\n#submit{\n  align-self: flex-end;\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;;;AAIA;CACC,YAAY;CACZ,sBAAsB;CACtB,uBAAuB;CACvB,mBAAmB;CACnB,iBAAiB;CACjB,WAAW;;AAEZ;;AAEA;EACE,aAAa;AACf;;AAEA;CACC,oBAAoB;CACpB,YAAY;CACZ,gBAAgB;CAChB,iBAAiB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,oBAAoB;EACpB,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#emailInfo{\n  text-align: center;\n}\n\n\n\n.shoutout-input{\n display:flex;\n flex-direction: column;\n justify-content: center;\n align-items: center;\n margin-left: 40px;\n width:200px;\n\n}\n\ninput{\n  display: flex;\n}\n\n#message{\n align-self: flex-end;\n flex-grow: 1;\n margin-top: 15px;\n margin-left: 45px;\n}\n\n#message label{\n  display: flex;\n  justify-content: center;\n}\n\n#submit{\n  align-self: flex-end;\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#emailInfo {\n  text-align: center;\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-left: 650px;\n  width: 200px;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: flex-end;\n  flex-grow: 1;\n  margin-top: 15px;\n\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: flex-end;\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,aAAa;EACb,kBAAkB;EAClB,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,kBAAkB;EAClB,YAAY;AACd;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,oBAAoB;EACpB,YAAY;EACZ,gBAAgB;;AAElB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,oBAAoB;EACpB,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#emailInfo {\n  text-align: center;\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-left: 650px;\n  width: 200px;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: flex-end;\n  flex-grow: 1;\n  margin-top: 15px;\n\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: flex-end;\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16571,7 +16583,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#shoutouts{\n  margin-left: 15px;\n}\n\n#noShoutouts{\n  margin-left: 15px;\n}\n\n.link{\n  margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutoutList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#shoutouts{\n  margin-left: 15px;\n}\n\n#noShoutouts{\n  margin-left: 15px;\n}\n\n.link{\n  margin-left: 30px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#shoutouts {\n  margin-left: 15px;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n.link {\n  margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutoutList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#shoutouts {\n  margin-left: 15px;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n.link {\n  margin-left: 30px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16596,7 +16608,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#greeting{\n  text-align: center;\n}\n\n\n#options {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/user-home.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;;AAGA;EACE,iBAAiB;AACnB","sourcesContent":["#greeting{\n  text-align: center;\n}\n\n\n#options {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#greeting {\n  text-align: center;\n}\n\n#options {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/user-home.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#greeting {\n  text-align: center;\n}\n\n#options {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
