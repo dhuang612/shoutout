@@ -1,0 +1,17 @@
+.authInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: right;
+  width: 200px;
+  line-height: 1.6;
+  padding-left: 30px;
+}
+
+#email {
+  margin-right: 20px;
+}
+
+label {
+  margin-right: 10px;
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {showEmails} from '../store'
+import './emailList.css'
 
 export class EmailList extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ export class EmailList extends Component {
     const emails = this.props.emails.data
     if (emails !== [] && emails !== undefined) {
       return (
-        <div>
+        <div id="emails">
           {emails.length ? (
             emails.map(({id, email}) => (
               <div key={id}>
@@ -19,9 +20,9 @@ export class EmailList extends Component {
               </div>
             ))
           ) : (
-            <div>
+            <div id="noEmails">
               No emails{' '}
-              <div>
+              <div className="link">
                 <Link to="/home/addEmail">add new emails</Link>
               </div>
             </div>

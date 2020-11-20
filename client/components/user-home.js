@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import './user-home.css'
 
 /**
  * COMPONENT
@@ -12,8 +13,8 @@ export const UserHome = props => {
   if (invited) {
     return (
       <div>
-        <h3>Welcome, {email}</h3>
-        <div>
+        <h3 id="greeting">Welcome, {email}</h3>
+        <div id="options">
           <div>
             {' '}
             <Link to="/home/addEmail">add new emails</Link>
