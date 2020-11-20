@@ -32,6 +32,8 @@ router.post('/new', async (req, res, next) => {
         if (createNewSO) {
           console.log('this is our new shoutout', createNewSO)
           res.status(200).send('successfully made new SO')
+        } else {
+          res.status(401).send('something went wrong')
         }
       }
     }

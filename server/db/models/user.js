@@ -12,6 +12,12 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
+    validate: {
+      len: {
+        args: [6, 30],
+        msg: 'password needs to be between 6 and 30 characters'
+      }
+    },
     get() {
       return () => this.getDataValue('password')
     }
