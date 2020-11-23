@@ -402,12 +402,13 @@ function (_Component) {
           id: "emails"
         }, emails.length ? emails.map(function (_ref) {
           var id = _ref.id,
-              email = _ref.email;
+              email = _ref.email,
+              sent = _ref.sent;
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/home/showEmails/".concat(id)
-          }, email));
+          }, email), " ", sent ? '✓' : '');
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "noEmails"
         }, "No emails", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -859,7 +860,7 @@ function (_Component) {
             key: id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/home/showShoutouts/".concat(id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, name, response.data)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email));
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "noShoutouts"
         }, "No shoutouts", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
