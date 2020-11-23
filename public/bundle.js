@@ -1223,6 +1223,9 @@ __webpack_require__.r(__webpack_exports__);
 var UserHome = function UserHome(props) {
   var email = props.email;
   var invited = props.invited;
+  var greeting = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    id: "greeting"
+  }, "Welcome, ", email);
   var alwaysShow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/home/addShoutout"
   }, "create a new shoutout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1230,9 +1233,7 @@ var UserHome = function UserHome(props) {
   }, "show shoutouts list")));
 
   if (invited) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-      id: "greeting"
-    }, "Welcome, ", email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please add emails to allow users to send shoutouts!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, greeting, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please add emails to allow users to send shoutouts!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "options"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/home/addEmail"
@@ -1240,7 +1241,7 @@ var UserHome = function UserHome(props) {
       to: "/home/showEmails"
     }, "show email list"))));
   } else {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Use the link below to create a new shoutout!"), alwaysShow));
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, greeting, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Use the link below to create a new shoutout!"), alwaysShow));
   }
 };
 /**
