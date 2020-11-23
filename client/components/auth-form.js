@@ -11,7 +11,7 @@ import './auth-form.css'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   return (
-    <div id="authForm">
+    <div>
       <form id="form" onSubmit={handleSubmit} name={name}>
         <div className="authInfo">
           <label id="email" htmlFor="email">
@@ -25,7 +25,7 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </div>
-        <div>
+        <div id="submit-btn">
           <Button variant="primary" type="submit">
             {displayName}
           </Button>
