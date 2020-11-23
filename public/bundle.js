@@ -408,7 +408,7 @@ function (_Component) {
             key: id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/home/showEmails/".concat(id)
-          }, email), " ", sent ? '✓' : '');
+          }, email), ' ', sent ? '✓' : '');
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "noEmails"
         }, "No emails", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -727,7 +727,8 @@ var ShoutoutForm = function ShoutoutForm(props) {
       id: "submit"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
       variant: "success",
-      type: "submit"
+      type: "submit",
+      disabled: emails.data.length === 0 ? true : false
     }, "create shoutout!"))));
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
