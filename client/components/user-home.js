@@ -10,6 +10,7 @@ import './user-home.css'
 export const UserHome = props => {
   const {email} = props
   const {invited} = props
+  let greeting = <h3 id="greeting">Welcome, {email}</h3>
   let alwaysShow = (
     <div>
       <Link to="/home/addShoutout">create a new shoutout</Link>
@@ -22,7 +23,7 @@ export const UserHome = props => {
   if (invited) {
     return (
       <div>
-        <h3 id="greeting">Welcome, {email}</h3>
+        {greeting}
         <p>Please add emails to allow users to send shoutouts!</p>
         <div id="options">
           <div>
@@ -40,7 +41,7 @@ export const UserHome = props => {
     return (
       <div>
         <div>
-          <h3>Welcome, {email}</h3>
+          {greeting}
           <p>Use the link below to create a new shoutout!</p>
           {alwaysShow}
         </div>
