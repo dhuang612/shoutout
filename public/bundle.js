@@ -728,7 +728,7 @@ var ShoutoutForm = function ShoutoutForm(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
       variant: "success",
       type: "submit",
-      disabled: emails.data.length === 0 ? true : false
+      disabled: emails.data.length === 0
     }, "create shoutout!"))));
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
@@ -1223,27 +1223,24 @@ __webpack_require__.r(__webpack_exports__);
 var UserHome = function UserHome(props) {
   var email = props.email;
   var invited = props.invited;
+  var alwaysShow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/home/addShoutout"
+  }, "create a new shoutout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/home/showShoutouts"
+  }, "show shoutouts list")));
 
   if (invited) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
       id: "greeting"
-    }, "Welcome, ", email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Welcome, ", email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please add emails to allow users to send shoutouts!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "options"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/home/addEmail"
-    }, "add new emails")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/home/addShoutout"
-    }, "create a new shoutout")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, "add new emails")), alwaysShow, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/home/showEmails"
-    }, "show email list")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/home/showShoutouts"
-    }, "show shoutouts list"))));
+    }, "show email list"))));
   } else {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/home/addShoutout"
-    }, "create a new shoutout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/home/showShoutouts"
-    }, "show shoutouts list")));
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Use the link below to create a new shoutout!"), alwaysShow));
   }
 };
 /**
