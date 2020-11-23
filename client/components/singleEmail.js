@@ -27,6 +27,8 @@ class SingleEmail extends Component {
       let firstNameOfPerson = this.props.email.data.firstName
       let emailAddresOfPerson = this.props.email.data.email
       this.props.sendOutEmailInvite(firstNameOfPerson, emailAddresOfPerson)
+
+      this.props.history.push('/home/showEmails')
     }
   }
 

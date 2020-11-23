@@ -514,7 +514,7 @@ var InviteForm = function InviteForm(props) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "primary",
     type: "submit"
-  }, "signup"))));
+  }, "signup")), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")));
 };
 
 var mapSignup = function mapSignup(state) {
@@ -968,6 +968,8 @@ function (_Component) {
         var firstNameOfPerson = this.props.email.data.firstName;
         var emailAddresOfPerson = this.props.email.data.email;
         this.props.sendOutEmailInvite(firstNameOfPerson, emailAddresOfPerson);
+        console.log(this.Modal.onExit);
+        this.props.history.push('/home/showEmails');
       }
     }
   }, {
@@ -1100,10 +1102,12 @@ function (_Component) {
         var msg = this.props.shoutout.data.message;
         var name = this.props.shoutout.data.name;
         this.props.sendShoutout(emailAddress, msg, name);
-      } // setTimeout(() => {
-      //   this.props.history.push('/home/showShowouts')
-      // }, 2000)
+        this.props.history.push('/home');
+      }
 
+      console.log(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]); // if(Modal.onExit){
+      //   this.props.history.push('/home')
+      // }
     }
   }, {
     key: "render",
@@ -1612,26 +1616,25 @@ var showSingleEmail = function showSingleEmail(id) {
 
               case 3:
                 emailToFind = _context2.sent;
-                console.log('this is what emailToFindHolds', emailToFind);
 
                 if (emailToFind) {
                   dispatch(getSingleEmail(emailToFind));
                 }
 
-                _context2.next = 11;
+                _context2.next = 10;
                 break;
 
-              case 8:
-                _context2.prev = 8;
+              case 7:
+                _context2.prev = 7;
                 _context2.t0 = _context2["catch"](0);
                 console.log(_context2.t0);
 
-              case 11:
+              case 10:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
+        }, _callee2, null, [[0, 7]]);
       }));
 
       return function (_x2) {
@@ -2031,26 +2034,22 @@ var sendShoutouts = function sendShoutouts(email, msg, name) {
 
               case 3:
                 shoutoutToSend = _context4.sent;
-                console.log('shoutoutToSend holds', shoutoutToSend);
+                console.log('shoutoutToSend holds', shoutoutToSend); // history.push('/home/showShoutouts')
 
-                if (shoutoutToSend) {
-                  _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home');
-                }
-
-                _context4.next = 11;
+                _context4.next = 10;
                 break;
 
-              case 8:
-                _context4.prev = 8;
+              case 7:
+                _context4.prev = 7;
                 _context4.t0 = _context4["catch"](0);
                 console.error(_context4.t0);
 
-              case 11:
+              case 10:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 8]]);
+        }, _callee4, null, [[0, 7]]);
       }));
 
       return function (_x4) {
@@ -16560,7 +16559,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#body{\n  display:block;\n}\n\n#emailInfo {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n\n}\n\n.shoutout-input{\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;;AAExB;;AAEA;EACE,aAAa;EACb,kBAAkB;EAClB,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;;AAErB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;;EAEE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#body{\n  display:block;\n}\n\n#emailInfo {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n\n}\n\n.shoutout-input{\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#body {\n  display: block;\n}\n\n#emailInfo {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,kBAAkB;EAClB,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#body {\n  display: block;\n}\n\n#emailInfo {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

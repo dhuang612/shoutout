@@ -90,6 +90,10 @@ router.post('/send', async (req, res, next) => {
       }
       const sendEmail = sender.sendEmail(data)
       if (sendEmail) {
+        const shoutoutToRemove = await Shoutouts.findOne({
+          where: {message: msg}
+        })
+        console.log('this is the shoutout we want removed', shoutoutToRemove)
         res.status(200).send('successfully sent so!')
       }
     }

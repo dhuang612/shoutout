@@ -32,6 +32,7 @@ const InviteForm = props => {
             signup
           </Button>
         </div>
+        {error && error.response && <div> {error.response.data} </div>}
       </form>
     </div>
   )
