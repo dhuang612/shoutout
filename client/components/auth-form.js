@@ -11,8 +11,8 @@ import './auth-form.css'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <div id="authForm">
+      <form id="form" onSubmit={handleSubmit} name={name}>
         <div className="authInfo">
           <label id="email" htmlFor="email">
             <small>Email</small>

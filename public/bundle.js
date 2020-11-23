@@ -173,7 +173,10 @@ var AuthForm = function AuthForm(props) {
       displayName = props.displayName,
       handleSubmit = props.handleSubmit,
       error = props.error;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "authForm"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "form",
     onSubmit: handleSubmit,
     name: name
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -678,7 +681,7 @@ var ShoutoutForm = function ShoutoutForm(props) {
 
   if (emails.data) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      id: "body"
+      id: "bodyForm"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "emailInfo"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "People who you can send shoutouts to:"), emails.data.length !== 0 ? emails.data.map(function (email) {
@@ -686,7 +689,7 @@ var ShoutoutForm = function ShoutoutForm(props) {
         key: email.id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email.firstName), email.email);
     }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "There aren't people to send shoutouts to yet..")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      id: "form",
+      id: "formSO",
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "shoutout-input"
@@ -854,7 +857,7 @@ function (_Component) {
             key: id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/home/showShoutouts/".concat(id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, name, response.data)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email));
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "noShoutouts"
         }, "No shoutouts", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -968,7 +971,6 @@ function (_Component) {
         var firstNameOfPerson = this.props.email.data.firstName;
         var emailAddresOfPerson = this.props.email.data.email;
         this.props.sendOutEmailInvite(firstNameOfPerson, emailAddresOfPerson);
-        console.log(this.Modal.onExit);
         this.props.history.push('/home/showEmails');
       }
     }
@@ -1103,11 +1105,10 @@ function (_Component) {
         var name = this.props.shoutout.data.name;
         this.props.sendShoutout(emailAddress, msg, name);
         this.props.history.push('/home');
-      }
-
-      console.log(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]); // if(Modal.onExit){
+      } // if(Modal.onExit){
       //   this.props.history.push('/home')
       // }
+
     }
   }, {
     key: "render",
@@ -16509,7 +16510,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n}\n\n#email {\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/auth-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,iBAAiB;EACjB,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":[".authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n}\n\n#email {\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "/* #authForm{\n\n} */\n\n\n#form{\n  width:350px;\n  margin-left: 25px;\n  text-align: center;\n  border:1px solid black;\n  border-radius: 15px;\n  background-color: #c2d6d6;\n}\n\n.authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  text-align: center;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n\n}\n\n#email {\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/auth-form.css"],"names":[],"mappings":"AAAA;;GAEG;;;AAGH;EACE,WAAW;EACX,iBAAiB;EACjB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;EACnB,yBAAyB;AAC3B;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,iBAAiB;EACjB,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;;AAEpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":["/* #authForm{\n\n} */\n\n\n#form{\n  width:350px;\n  margin-left: 25px;\n  text-align: center;\n  border:1px solid black;\n  border-radius: 15px;\n  background-color: #c2d6d6;\n}\n\n.authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  text-align: center;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n\n}\n\n#email {\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16559,7 +16560,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#body {\n  display: block;\n}\n\n#emailInfo {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,kBAAkB;EAClB,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#body {\n  display: block;\n}\n\n#emailInfo {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n}\n\n#form {\n  display: flex;\n  text-align: center;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#bodyForm {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo{\n  margin-bottom: 10px;\n}\n\n#formSO {\n  margin-top: 10px;\n  width:350px;\n  margin-bottom: 25px;\n  border:1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,WAAW;EACX,mBAAmB;EACnB,sBAAsB;EACtB,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#bodyForm {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo{\n  margin-bottom: 10px;\n}\n\n#formSO {\n  margin-top: 10px;\n  width:350px;\n  margin-bottom: 25px;\n  border:1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

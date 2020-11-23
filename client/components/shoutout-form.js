@@ -16,7 +16,7 @@ const ShoutoutForm = props => {
   }, [])
   if (emails.data) {
     return (
-      <div id="body">
+      <div id="bodyForm">
         <div id="emailInfo">
           <p>People who you can send shoutouts to:</p>
           {emails.data.length !== 0 ? (
@@ -30,7 +30,7 @@ const ShoutoutForm = props => {
             <div>There aren't people to send shoutouts to yet..</div>
           )}
         </div>
-        <form id="form" onSubmit={handleSubmit}>
+        <form id="formSO" onSubmit={handleSubmit}>
           <div className="shoutout-input">
             <label htmlFor="name">
               <small>name</small>

@@ -31,7 +31,7 @@ class SingleShoutout extends Component {
       this.props.sendShoutout(emailAddress, msg, name)
       this.props.history.push('/home')
     }
-    console.log(Modal)
+
     // if(Modal.onExit){
     //   this.props.history.push('/home')
     // }

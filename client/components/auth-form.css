@@ -1,8 +1,22 @@
+/* #authForm{
+
+} */
+
+#form {
+  width: 350px;
+  margin-left: 25px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #c2d6d6;
+}
+
 .authInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   text-align: right;
+  text-align: center;
   width: 200px;
   line-height: 1.6;
   padding-left: 30px;

@@ -17,7 +17,10 @@ export class ShoutoutList extends Component {
             shoutouts.map(({id, name, email}) => (
               <div key={id}>
                 <Link to={`/home/showShoutouts/${id}`}>
-                  <div>{name}</div>
+                  <div>
+                    {name}
+                    {response.data}
+                  </div>
                 </Link>
                 <div>{email}</div>
               </div>
