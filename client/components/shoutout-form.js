@@ -56,7 +56,11 @@ const ShoutoutForm = props => {
             <textarea id="textarea" name="message" type="text" />
           </div>
           <div id="submit">
-            <Button variant="success" type="submit">
+            <Button
+              variant="success"
+              type="submit"
+              disabled={emails.data.length === 0}
+            >
               create shoutout!
             </Button>
           </div>
