@@ -70,8 +70,6 @@ router.post('/sendInvite', async (req, res, next) => {
     if (req.body) {
       const name = req.body.firstName
       const userId = req.user.id
-      // console.log('userId is being passed', userId)
-      // console.log('req.body --->', req.body.email)
       let data = {
         templateName: 'welcome',
         sender: 'no-reply@shoutout.com',
@@ -81,10 +79,15 @@ router.post('/sendInvite', async (req, res, next) => {
         id: userId
       }
       const sendEmail = sender.sendEmail(data)
-      console.log(sendEmail)
-      if (sendEmail) {
-        res.status(200).send('successfully sent so!')
-      }
+      const emailToFind = await Emails.findOne({
+        where: {
+          email: req.body.email
+        }
+      })
+      console.log('this is what emailToFind holds', emailToFind)
+      emailToFind.sent = true
+      await emailToFind.save()
+      res.status(200).send('successfully sent so!')
     }
   } catch (error) {
     console.error(error)

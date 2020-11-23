@@ -23,6 +23,11 @@ const Emails = db.define('email', {
     validate: {
       isEmail: true
     }
+  },
+  sent: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   }
 })
 

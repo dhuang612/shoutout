@@ -14,9 +14,10 @@ export class EmailList extends Component {
       return (
         <div id="emails">
           {emails.length ? (
-            emails.map(({id, email}) => (
+            emails.map(({id, email, sent}) => (
               <div key={id}>
-                <Link to={`/home/showEmails/${id}`}>{email}</Link>
+                <Link to={`/home/showEmails/${id}`}>{email}</Link>{' '}
+                {sent ? '✓' : ''}
               </div>
             ))
           ) : (
