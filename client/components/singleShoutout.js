@@ -29,10 +29,12 @@ class SingleShoutout extends Component {
       let msg = this.props.shoutout.data.message
       let name = this.props.shoutout.data.name
       this.props.sendShoutout(emailAddress, msg, name)
+      this.props.history.push('/home')
     }
-    // setTimeout(() => {
-    //   this.props.history.push('/home/showShowouts')
-    // }, 2000)
+    console.log(Modal)
+    // if(Modal.onExit){
+    //   this.props.history.push('/home')
+    // }
   }
 
   render() {

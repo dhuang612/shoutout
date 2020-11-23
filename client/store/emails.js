@@ -28,7 +28,7 @@ export const addEmail = (firstName, email) => async dispatch => {
 export const showSingleEmail = id => async dispatch => {
   try {
     const emailToFind = await axios.get(`/api/emails/${id}`)
-    console.log('this is what emailToFindHolds', emailToFind)
+
     if (emailToFind) {
       dispatch(getSingleEmail(emailToFind))
     }
