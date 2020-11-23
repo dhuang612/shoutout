@@ -4,7 +4,7 @@ import {inviteAuth} from '../store'
 import Button from 'react-bootstrap/Button'
 
 const InviteForm = props => {
-  const {handleSubmit} = props
+  const {handleSubmit, error} = props
   console.log(props)
   return (
     <div>
@@ -43,7 +43,8 @@ const mapSignup = state => {
     // name: 'signup',
     // displayName: 'Sign Up',
     // error: state.user.error,
-    id: state.user
+    id: state.user,
+    error: state.user.error
   }
 }
 

@@ -494,7 +494,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var InviteForm = function InviteForm(props) {
-  var handleSubmit = props.handleSubmit;
+  var handleSubmit = props.handleSubmit,
+      error = props.error;
   console.log(props);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit,
@@ -525,7 +526,8 @@ var mapSignup = function mapSignup(state) {
     // name: 'signup',
     // displayName: 'Sign Up',
     // error: state.user.error,
-    id: state.user
+    id: state.user,
+    error: state.user.error
   };
 };
 
