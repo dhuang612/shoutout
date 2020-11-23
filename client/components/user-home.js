@@ -10,23 +10,28 @@ import './user-home.css'
 export const UserHome = props => {
   const {email} = props
   const {invited} = props
+  let alwaysShow = (
+    <div>
+      <Link to="/home/addShoutout">create a new shoutout</Link>
+      <div>
+        {' '}
+        <Link to="/home/showShoutouts">show shoutouts list</Link>
+      </div>
+    </div>
+  )
   if (invited) {
     return (
       <div>
         <h3 id="greeting">Welcome, {email}</h3>
+        <p>Please add emails to allow users to send shoutouts!</p>
         <div id="options">
           <div>
             {' '}
             <Link to="/home/addEmail">add new emails</Link>
           </div>
-          <div>
-            <Link to="/home/addShoutout">create a new shoutout</Link>
-          </div>
+          {alwaysShow}
           <div>
             <Link to="/home/showEmails">show email list</Link>
-          </div>
-          <div>
-            <Link to="/home/showShoutouts">show shoutouts list</Link>
           </div>
         </div>
       </div>
@@ -36,11 +41,8 @@ export const UserHome = props => {
       <div>
         <div>
           <h3>Welcome, {email}</h3>
-        </div>
-        <Link to="/home/addShoutout">create a new shoutout</Link>
-        <div>
-          {' '}
-          <Link to="/home/showShoutouts">show shoutouts list</Link>
+          <p>Use the link below to create a new shoutout!</p>
+          {alwaysShow}
         </div>
       </div>
     )
