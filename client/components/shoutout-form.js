@@ -16,7 +16,7 @@ const ShoutoutForm = props => {
   }, [])
   if (emails.data) {
     return (
-      <div>
+      <div id="body">
         <div id="emailInfo">
           <p>People who you can send shoutouts to:</p>
           {emails.data.length !== 0 ? (
