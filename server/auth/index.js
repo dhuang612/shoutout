@@ -37,12 +37,12 @@ router.post('/signup', async (req, res, next) => {
       password: req.body.password,
       token
     })
-
+    console.log('this is the token we are assigned', token)
     if (user.usedValidEmail(req.body.email)) {
       let data = {
         receiver: req.body.email,
         sender: 'no-reply@shoutout.com',
-        verify_url: `https://shoutouts-the-app.herokuapp.com/confirmation/${token}`,
+        verify_url: `https://shoutouts-the-app.herokuapp.com/auth/confirmation/${token}`,
         templateName: 'verification'
       }
 
@@ -69,6 +69,7 @@ router.post('/signup', async (req, res, next) => {
 
 //route for email verification
 router.get('/confirmation/:token', async (req, res, next) => {
+  console.log('this is the token we are trying to use', req.params.token)
   const findUser = await User.findOne({
     where: {
       token: req.params.token
