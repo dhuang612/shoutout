@@ -1768,7 +1768,7 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, inviteAuth, logout, addEmail, showSingleEmail, showEmails, sendInviteEmail, addShoutout, showShoutouts, showSingleShoutout, sendShoutouts */
+/*! exports provided: default, addEmail, showSingleEmail, showEmails, sendInviteEmail, addShoutout, showShoutouts, showSingleShoutout, sendShoutouts, me, auth, inviteAuth, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2261,7 +2261,9 @@ var inviteAuth = function inviteAuth(email, password, id) {
               case 8:
                 _context3.prev = 8;
                 _context3.t0 = _context3["catch"](0);
-                console.error(_context3.t0);
+                return _context3.abrupt("return", dispatch(getUser({
+                  error: _context3.t0
+                })));
 
               case 11:
                 try {
