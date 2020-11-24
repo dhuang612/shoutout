@@ -6,10 +6,12 @@ module.exports = router
 
 router.post('/login', async (req, res, next) => {
   try {
-    const user = await User.findOne({where: {email: req.body.email}})
+    const user = await User.findOne({
+      where: {email: req.body.email, isVerified: true}
+    })
     if (!user) {
       console.log('No such user found:', req.body.email)
-      res.status(401).send('Wrong username and/or password')
+      res.status(401).send('no user found or awaiting email verification')
     } else if (!user.correctPassword(req.body.password)) {
       console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
@@ -23,9 +25,35 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    const user = await User.create(req.body)
+    const createToken = () => {
+      const tokenVal = Math.random()
+        .toString(36)
+        .substr(2)
+      return tokenVal + tokenVal
+    }
+    const token = createToken()
+    const user = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+      token
+    })
+
     if (user.usedValidEmail(req.body.email)) {
-      req.login(user, err => (err ? next(err) : res.json(user)))
+      let data = {
+        receiver: req.body.email,
+        sender: 'no-reply@shoutout.com',
+        verify_url:
+          'https://shoutouts-the-app.herokuapp.com/confirmation/:token',
+        templateName: 'verification'
+      }
+
+      const sendEmail = sender.sendEmail(data)
+      // console.log('this is sendEmail', sendEmail)
+      if (sendEmail) {
+        return res
+          .status(401)
+          .json('Please check your Email for account confirmation')
+      }
     } else {
       const removeUser = await User.findByPk(user.id)
       await removeUser.destroy(req.body)
@@ -39,6 +67,23 @@ router.post('/signup', async (req, res, next) => {
     }
   }
 })
+
+//route for email verification
+router.get('/confirmation/:token', async (req, res, next) => {
+  const findUser = await User.findOne({
+    where: {
+      token: req.params.token
+    }
+  })
+  if (!findUser) {
+    res.status(404).send('invalid verification link')
+  } else {
+    findUser.isVerified = true
+    await findUser.save()
+    res.redirect('/login')
+  }
+})
+
 //route to handle invited people // will need to send the id along from the invite side.
 router.post('/signup/invite', async (req, res, next) => {
   try {

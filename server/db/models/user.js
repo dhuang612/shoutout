@@ -6,7 +6,10 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     // unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -41,7 +44,12 @@ const User = db.define('user', {
   inviteId: {
     type: Sequelize.INTEGER,
     defaultValue: null
-  }
+  },
+  isVerified: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  token: Sequelize.STRING
 })
 
 module.exports = User
