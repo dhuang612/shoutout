@@ -1,14 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {inviteAuth, auth} from '../store'
+import {inviteAuth} from '../store'
 import Button from 'react-bootstrap/Button'
+import './inviteSignup-form.css'
 
 const InviteForm = props => {
   const {handleSubmit, error} = props
   console.log(props)
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <div id="flex-container">
+      <form id="inviteForm" onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="codeNum">
             <small>code number</small>

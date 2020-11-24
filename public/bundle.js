@@ -474,6 +474,34 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./client/components/inviteSignup-form.css":
+/*!*************************************************!*\
+  !*** ./client/components/inviteSignup-form.css ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_inviteSignup_form_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!./inviteSignup-form.css */ "./node_modules/css-loader/dist/cjs.js!./client/components/inviteSignup-form.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_inviteSignup_form_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_inviteSignup_form_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./client/components/inviteSignup-form.js":
 /*!************************************************!*\
   !*** ./client/components/inviteSignup-form.js ***!
@@ -489,6 +517,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _inviteSignup_form_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./inviteSignup-form.css */ "./client/components/inviteSignup-form.css");
+
 
 
 
@@ -498,7 +528,10 @@ var InviteForm = function InviteForm(props) {
   var handleSubmit = props.handleSubmit,
       error = props.error;
   console.log(props);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "flex-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "inviteForm",
     onSubmit: handleSubmit,
     name: name
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -676,13 +709,22 @@ __webpack_require__.r(__webpack_exports__);
 var ShoutoutForm = function ShoutoutForm(props) {
   var handleSubmit = props.handleSubmit,
       showAvailableEmails = props.showAvailableEmails,
-      emails = props.emails;
+      emails = props.emails,
+      error = props.error;
   var displayEmails;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     displayEmails = showAvailableEmails(); //having a second param of [] makes it only run once.
   }, []);
 
   if (emails.data) {
+    var errorMsg = '';
+
+    if (error) {
+      errorMsg = error.response && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "errMsg"
+      }, " ", error.response.data, " ");
+    }
+
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "bodyForm"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -708,7 +750,7 @@ var ShoutoutForm = function ShoutoutForm(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       name: "email",
       type: "text"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }), errorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "shoutout-input"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "from"
@@ -738,7 +780,8 @@ var ShoutoutForm = function ShoutoutForm(props) {
 var mapState = function mapState(state) {
   return {
     id: state.user,
-    emails: state.emails
+    emails: state.emails,
+    error: state.shoutouts.error
   };
 };
 
@@ -1768,7 +1811,7 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, addEmail, showSingleEmail, showEmails, sendInviteEmail, addShoutout, showShoutouts, showSingleShoutout, sendShoutouts, me, auth, inviteAuth, logout */
+/*! exports provided: default, me, auth, inviteAuth, logout, addEmail, showSingleEmail, showEmails, sendInviteEmail, addShoutout, showShoutouts, showSingleShoutout, sendShoutouts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1911,7 +1954,9 @@ var addShoutout = function addShoutout(name, message, email, from) {
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](0);
-                console.error(_context.t0);
+                return _context.abrupt("return", dispatch(newShoutout({
+                  error: _context.t0
+                })));
 
               case 10:
               case "end":
@@ -16546,6 +16591,31 @@ ___CSS_LOADER_EXPORT___.push([module.i, "#emails {\n  margin-left: 15px;\n}\n\n#
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/components/inviteSignup-form.css":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/components/inviteSignup-form.css ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, "\n#flex-container{\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n}\n\n#inviteForm{\n  border: 1px solid black;\n  border-radius: 25px;\n  align-self: start;\n  margin:auto;\n  background-color: #BACDC1;\n\n}\n\n\n#add{\n  margin: 0;\n  align-self: baseline;\n  flex-grow: 7;\n}\n", "",{"version":3,"sources":["webpack://./client/components/inviteSignup-form.css"],"names":[],"mappings":";AACA;EACE,aAAa;EACb,mBAAmB;EACnB,2BAA2B;AAC7B;;AAEA;EACE,uBAAuB;EACvB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,yBAAyB;;AAE3B;;;AAGA;EACE,SAAS;EACT,oBAAoB;EACpB,YAAY;AACd","sourcesContent":["\n#flex-container{\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n}\n\n#inviteForm{\n  border: 1px solid black;\n  border-radius: 25px;\n  align-self: start;\n  margin:auto;\n  background-color: #BACDC1;\n\n}\n\n\n#add{\n  margin: 0;\n  align-self: baseline;\n  flex-grow: 7;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./client/components/shoutout-form.css":
 /*!***********************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./client/components/shoutout-form.css ***!
@@ -16564,7 +16634,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#bodyForm {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  margin-bottom: 10px;\n}\n\n#formSO {\n  margin-top: 10px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#bodyForm {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  margin-bottom: 10px;\n}\n\n#formSO {\n  margin-top: 10px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#bodyForm {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  margin-bottom: 10px;\n}\n\n#formSO {\n  margin-top: 10px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\n#errMsg{\n flex-grow: 1;\n padding: 5px 5px;\n  font-size: 14px;\n  color: #fa050f;\n margin-bottom: 0%;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;AACpB;;AAEA;CACC,YAAY;CACZ,gBAAgB;EACf,eAAe;EACf,cAAc;CACf,iBAAiB;AAClB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;AAClB","sourcesContent":["#bodyForm {\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  margin-bottom: 10px;\n}\n\n#formSO {\n  margin-top: 10px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\n#errMsg{\n flex-grow: 1;\n padding: 5px 5px;\n  font-size: 14px;\n  color: #fa050f;\n margin-bottom: 0%;\n}\n\ninput {\n  display: flex;\n}\n\n#message {\n  align-self: center;\n  flex-grow: 1;\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  justify-content: center;\n}\n\n#submit {\n  align-self: center;\n  flex-grow: 4;\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

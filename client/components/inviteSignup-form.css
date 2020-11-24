@@ -1,0 +1,19 @@
+#flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#inviteForm {
+  border: 1px solid black;
+  border-radius: 25px;
+  align-self: start;
+  margin: auto;
+  background-color: #bacdc1;
+}
+
+#add {
+  margin: 0;
+  align-self: baseline;
+  flex-grow: 7;
+}

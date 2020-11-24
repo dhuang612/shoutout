@@ -28,8 +28,8 @@ export const addShoutout = (name, message, email, from) => async dispatch => {
     if (add.data) {
       history.push('/home/showShoutouts')
     }
-  } catch (error) {
-    console.error(error)
+  } catch (shoutoutError) {
+    return dispatch(newShoutout({error: shoutoutError}))
   }
 }
 
