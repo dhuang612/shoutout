@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {inviteAuth} from '../store'
+import {inviteAuth, auth} from '../store'
 import Button from 'react-bootstrap/Button'
 
 const InviteForm = props => {
