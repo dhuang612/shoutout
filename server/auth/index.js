@@ -42,8 +42,7 @@ router.post('/signup', async (req, res, next) => {
       let data = {
         receiver: req.body.email,
         sender: 'no-reply@shoutout.com',
-        verify_url:
-          'https://shoutouts-the-app.herokuapp.com/confirmation/:token',
+        verify_url: `https://shoutouts-the-app.herokuapp.com/confirmation/${token}`,
         templateName: 'verification'
       }
 
