@@ -12,7 +12,7 @@ export const UserHome = props => {
   const {invited} = props
   let greeting = <h3 id="greeting">Welcome, {email}</h3>
   let alwaysShow = (
-    <div>
+    <div id="shownToEveryone">
       <Link to="/home/addShoutout">create a new shoutout</Link>
       <div>
         {' '}
@@ -24,7 +24,10 @@ export const UserHome = props => {
     return (
       <div>
         {greeting}
-        <p>Please add emails to allow users to send shoutouts!</p>
+        <p id="ownerInfo">
+          Please add emails and send out invites to allow users to send
+          shoutouts!
+        </p>
         <div id="options">
           <div>
             {' '}
@@ -42,8 +45,8 @@ export const UserHome = props => {
       <div>
         <div>
           {greeting}
-          <p>Use the link below to create a new shoutout!</p>
-          {alwaysShow}
+          <p id="invitedInfo">Use the link below to create a new shoutout!</p>
+          <div id="invitedLinks">{alwaysShow}</div>
         </div>
       </div>
     )
