@@ -8,6 +8,7 @@ module.exports = router
 //need to post a new one
 router.post('/new', async (req, res, next) => {
   try {
+    let idToCheck = ''
     if (req.body) {
       let from
       const user = req.user
@@ -15,8 +16,15 @@ router.post('/new', async (req, res, next) => {
       if (!req.body.from) {
         from = 'N/A'
       }
+      if (!req.body.inviteId) {
+        idToCheck = req.user.id
+      } else {
+        idToCheck = req.body.inviteId
+      }
       const emailToCheck = req.body.email
-      const checkEmail = await Emails.findOne({where: {email: emailToCheck}})
+      const checkEmail = await Emails.findOne({
+        where: {email: emailToCheck, userId: idToCheck}
+      })
       if (!checkEmail) {
         res.status(401).send('email doesnt exist')
       } else {
@@ -38,7 +46,7 @@ router.post('/new', async (req, res, next) => {
       }
     }
   } catch (error) {
-    console.error(error)
+    next(error)
   }
 })
 
@@ -99,6 +107,6 @@ router.post('/send', async (req, res, next) => {
       }
     }
   } catch (error) {
-    console.error(error)
+    next(error)
   }
 })

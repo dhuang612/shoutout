@@ -5,7 +5,7 @@ import './shoutout-form.css'
 import Button from 'react-bootstrap/Button'
 
 const ShoutoutForm = props => {
-  const {handleSubmit, showAvailableEmails, emails} = props
+  const {handleSubmit, showAvailableEmails, emails, error} = props
 
   let displayEmails
 
@@ -15,6 +15,11 @@ const ShoutoutForm = props => {
     //having a second param of [] makes it only run once.
   }, [])
   if (emails.data) {
+    let errorMsg = ''
+    if (error) {
+      errorMsg = error.response &&
+        error.response && <div id="errMsg">{error.response.data}</div>
+    }
     return (
       <div id="bodyForm">
         <div id="emailInfo">
@@ -42,6 +47,7 @@ const ShoutoutForm = props => {
               <small>Email</small>
             </label>
             <input name="email" type="text" />
+            {errorMsg}
           </div>
           <div className="shoutout-input">
             <label htmlFor="from">
@@ -75,7 +81,8 @@ const ShoutoutForm = props => {
 const mapState = state => {
   return {
     id: state.user,
-    emails: state.emails
+    emails: state.emails,
+    error: state.shoutouts.error
   }
 }
 

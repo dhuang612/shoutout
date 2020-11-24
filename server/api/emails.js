@@ -19,10 +19,9 @@ router.post('/', async (req, res, next) => {
       } else {
         res.status(401).send('invalid email!')
       }
-      console.log(Emails)
     }
   } catch (error) {
-    console.error(error)
+    next(error)
   }
 })
 
@@ -52,7 +51,7 @@ router.get('/showAllEmails', async (req, res, next) => {
       }
     }
   } catch (error) {
-    console.error(error)
+    next(error)
   }
 })
 
@@ -90,6 +89,6 @@ router.post('/sendInvite', async (req, res, next) => {
       res.status(200).send('successfully sent so!')
     }
   } catch (error) {
-    console.error(error)
+    next(error)
   }
 })

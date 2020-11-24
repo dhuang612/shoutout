@@ -23,6 +23,14 @@
   align-self: center;
 }
 
+#errMsg {
+  flex-grow: 1;
+  padding: 5px 5px;
+  font-size: 14px;
+  color: #fa050f;
+  margin-bottom: 0%;
+}
+
 input {
   display: flex;
 }
