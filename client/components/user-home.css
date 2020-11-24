@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+#ownerInfo {
+  margin-left: 15px;
+}
+
+#invitedInfo {
+  margin-left: 15px;
+}
+
+#invitedLinks {
+  margin-left: 15px;
+}
+
 #options {
   margin-left: 15px;
 }

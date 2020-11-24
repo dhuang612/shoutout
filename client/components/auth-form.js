@@ -30,7 +30,8 @@ const AuthForm = props => {
             {displayName}
           </Button>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
+        {error &&
+          error.response && <div id="errMsg"> {error.response.data} </div>}
       </form>
     </div>
   )
