@@ -7,11 +7,27 @@
 }
 
 #emailInfo {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 185px;
+  width: 80vw;
+}
+
+#emailName {
+  flex: 0 32%;
+  height: 75px;
+  padding: 15px 15px;
+  margin: 15px 15px;
+}
+
+#noEmails {
+  height: 40px;
 }
 
 #formSO {
-  margin-top: 10px;
+  margin-top: 5px;
   width: 350px;
   margin-bottom: 25px;
   border: 1px solid black;
