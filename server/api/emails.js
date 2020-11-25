@@ -24,6 +24,27 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+//future goal setup a route to add multiple emails
+router.post('/all', async (req, res, next) => {
+  try {
+    if (req.body) {
+      const user = req.user
+      let idNum = 1
+      let emailObj = {
+        id: idNum + 1,
+        firstName: req.body.firstName,
+        email: req.body.email
+      }
+      const addEmails = await user.addEmails(emailObj)
+      console.log(addEmails)
+      if (addEmails) {
+        res.status(200).send('successfully added!')
+      }
+    }
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.get('/showAllEmails', async (req, res, next) => {
   try {
