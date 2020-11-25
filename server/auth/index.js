@@ -2,16 +2,19 @@ const router = require('express').Router()
 const Emails = require('../db/models/emails')
 const User = require('../db/models/user')
 const sender = require('../emails/mailer')
+const Op = require('Sequelize').Op
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
   try {
     const user = await User.findOne({
-      where: {email: req.body.email, isVerified: true}
+      where: {email: req.body.email, isVerified: {[Op.or]: ['true', 'false']}}
     })
     if (!user) {
       console.log('No such user found:', req.body.email)
-      res.status(401).send('no user found or awaiting email verification')
+      res.status(401).send('no user found')
+    } else if (!user.isVerified) {
+      res.status(401).send('awaiting email verification')
     } else if (!user.correctPassword(req.body.password)) {
       console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
