@@ -1,12 +1,22 @@
 #body {
   background-color: #56a4a9;
+  background-image: url('thirdTry.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
   font-family: 'Oswald', sans-serif;
 }
-/*
-#c2d6d6
+/* #body::before{
+  content: "";
 
-#56a4a9
-*/
+} */
+
 #header {
   text-align: center;
 }

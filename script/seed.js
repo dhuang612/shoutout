@@ -22,37 +22,37 @@ async function seed() {
 
   if (users) {
     // const shoutouts = await userOne.getShoutouts()
-    let id = 1
+    let id = 2
     let emailObj = {
       firstName: 'Bob',
       email: 'bob@email.com'
     }
 
-    const addEmail = await userThree.addEmail(id, emailObj)
+    // const addEmail = await userThree.setEmails(id, emailObj)
+    console.log('this is setEmails', await userThree.setEmails)
+    if (userThree.email) {
+      // let paramsObj = {
+      //   name: 'Bob',
+      //   email: 'bob@email.com',
+      //   message: 'test msg',
+      //   userId: userThree.id
+      // }
 
-    if (addEmail.email) {
-      let paramsObj = {
-        name: 'Bob',
-        email: 'bob@email.com',
-        message: 'test msg',
-        userId: userThree.id
-      }
-
-      const addShoutout = await userThree.createShoutout(paramsObj)
+      // const addShoutout = await userThree.createShoutout(paramsObj)
       // console.log(Object.keys(userThree.__proto__))
       // console.log(Object.keys(newShoutout.__proto__));
       console.log(`seeded ${users.length} users`)
-      if (addShoutout) {
+      if (userThree) {
         // console.log('this is what addEmail holds', addEmail)
         const addEmail = await userThree.createEmail({
           firstName: 'Dan',
           email: 'dan@email.com'
         })
         let setId = 2
-        let shoutoutObj = {
-          shoutoutId: addShoutout.id
-        }
-        const setEmail = await userThree.setEmails(id, shoutoutObj)
+        // let shoutoutObj = {
+        //   shoutoutId: addShoutout.id
+        // }
+        // const setEmail = await userThree.setEmails(id, shoutoutObj)
         //  const setShoutout = await userThree.setEmails(id, emailObj);
         // console.log(`seeded ${addShoutout.length} shoutouts`)
         // console.log('this is what addInfo holds',addInfo)
