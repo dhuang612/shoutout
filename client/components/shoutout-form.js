@@ -22,17 +22,21 @@ const ShoutoutForm = props => {
     }
     return (
       <div id="bodyForm">
+        <h5>People who you can send shoutouts to:</h5>
         <div id="emailInfo">
-          <p>People who you can send shoutouts to:</p>
           {emails.data.length !== 0 ? (
             emails.data.map(email => (
               <div key={email.id}>
-                <div>{email.firstName}</div>
-                {email.email}
+                <div id="emailName">
+                  {email.firstName}
+                  <div> {email.email}</div>
+                </div>
               </div>
             ))
           ) : (
-            <div>There aren't people to send shoutouts to yet..</div>
+            <div id="noEmails">
+              There aren't people to send shoutouts to yet..
+            </div>
           )}
         </div>
         <form id="formSO" onSubmit={handleSubmit}>
