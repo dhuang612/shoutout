@@ -18,8 +18,8 @@ const getSingleEmail = email => ({
 export const addEmail = (firstName, email) => async dispatch => {
   try {
     const add = await axios.post('/api/emails', {firstName, email})
-    // dispatch(getEmails(add))
-    history.push('/home/showEmails')
+    dispatch(getEmails(add.data))
+    // history.push('/home/addEmail')
   } catch (error) {
     console.error(error)
   }
