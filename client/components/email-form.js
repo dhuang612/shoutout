@@ -11,8 +11,19 @@ const EmailForm = props => {
     <div>
       <Form
         onSubmit={handleSubmit}
-        render={({handleSubmit}) => (
-          <form onSubmit={handleSubmit}>
+        initialValues={{firstName: '', email: ''}}
+        render={({handleSubmit, form}) => (
+          <form
+            onSubmit={async e => {
+              try {
+                await handleSubmit(e)
+
+                form.reset()
+              } catch (error) {
+                console.error(error)
+              }
+            }}
+          >
             <div>
               <label>First Name</label>
               <Field
@@ -22,7 +33,7 @@ const EmailForm = props => {
               />
             </div>
             <div>
-              <label>First Name</label>
+              <label>Email</label>
               <Field name="email" component="input" placeholder="email" />
             </div>
             <Button variant="success" type="submit">
@@ -37,11 +48,10 @@ const EmailForm = props => {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const firstName = evt.target.firstName.value
-      const email = evt.target.email.value
-      dispatch(addEmail(firstName, email))
+    handleSubmit(props, e) {
+      const firstNameVal = props.firstName
+      const emailVal = props.email
+      dispatch(addEmail(firstNameVal, emailVal))
     }
   }
 }
