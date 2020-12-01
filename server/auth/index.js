@@ -40,7 +40,7 @@ router.post('/signup', async (req, res, next) => {
       password: req.body.password,
       token
     })
-    console.log('this is the token we are assigned', token)
+
     if (user.usedValidEmail(req.body.email)) {
       let data = {
         receiver: req.body.email,
@@ -51,7 +51,7 @@ router.post('/signup', async (req, res, next) => {
 
       const sendEmail = sender.sendEmail(data)
       // console.log('this is sendEmail', sendEmail)
-      if (sendEmail) {
+      if (sendEmail === '') {
         return res
           .status(401)
           .json('Please check your Email for account confirmation')

@@ -8,17 +8,24 @@ router.post('/', async (req, res, next) => {
   try {
     if (req.body) {
       const user = req.user
-      if (user.usedValidEmail(req.body.email)) {
-        const addEmail = user.createEmail({
-          firstName: req.body.firstName,
+      const checkIfEmailExists = await Emails.findOne({
+        where: {
           email: req.body.email
-        })
-        if (addEmail) {
-          res.status(200).send('successfully added email!')
         }
-      } else {
-        res.status(401).send('invalid email!')
-      }
+      })
+      if (checkIfEmailExists) {
+        res.status(401).json('email already in use!')
+      } else if (user.usedValidEmail(req.body.email)) {
+          const addEmail = user.createEmail({
+            firstName: req.body.firstName,
+            email: req.body.email
+          })
+          if (addEmail) {
+            res.status(200).send('successfully added email!')
+          } else {
+            res.status(401).send('something went wrong')
+          }
+        }
     }
   } catch (error) {
     next(error)

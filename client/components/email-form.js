@@ -1,24 +1,30 @@
-import React from 'react'
+import React, {useRef} from 'react'
+import axios from 'axios'
 import {Form, Field} from 'react-final-form'
+import {FORM_ERROR} from 'final-form'
 import {connect} from 'react-redux'
 import {addEmail} from '../store'
 import Button from 'react-bootstrap/Button'
 
 const EmailForm = props => {
   const {emails, handleSubmit, error} = props
-
   return (
     <div>
       <Form
         onSubmit={handleSubmit}
         initialValues={{firstName: '', email: ''}}
-        render={({handleSubmit, form}) => (
+        render={({handleSubmit, submitError, form}) => (
           <form
             onSubmit={async e => {
               try {
                 await handleSubmit(e)
-
-                form.reset()
+                if (submitError === 'undefined') {
+                  form.reset()
+                } else {
+                  setTimeout(() => {
+                    form.reset()
+                  }, 2400)
+                }
               } catch (error) {
                 console.error(error)
               }
@@ -33,12 +39,29 @@ const EmailForm = props => {
               />
             </div>
             <div>
-              <label>Email</label>
-              <Field name="email" component="input" placeholder="email" />
+              <Field name="email">
+                {({input, meta}) => (
+                  <div>
+                    <label>Email</label>
+                    <input {...input} type="text" placeholder="Email" />
+                    {(meta.error || meta.submitError) &&
+                      meta.touched && (
+                        <span>{meta.error || meta.submitError}</span>
+                      )}
+                  </div>
+                )}
+              </Field>
             </div>
-            <Button variant="success" type="submit">
-              add email
-            </Button>
+            <div>
+              <Button variant="success" type="submit">
+                add email
+              </Button>
+            </div>
+            <div>
+              {submitError && (
+                <div className="error">{submitError}</div> // not showing
+              )}
+            </div>
           </form>
         )}
       />
@@ -48,10 +71,21 @@ const EmailForm = props => {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(props, e) {
+    async handleSubmit(props, e) {
       const firstNameVal = props.firstName
       const emailVal = props.email
-      dispatch(addEmail(firstNameVal, emailVal))
+      try {
+        const result = dispatch(addEmail(firstNameVal, emailVal))
+        //push this into some helper? this is allow us to test if the creation of the email will fail
+        const validate = await axios.post('/api/emails', {
+          firstNameVal,
+          emailVal
+        })
+      } catch (error) {
+        let errors
+        errors = error.response.data.errors
+        return {[FORM_ERROR]: 'email already in use!'}
+      }
     }
   }
 }

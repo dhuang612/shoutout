@@ -267,13 +267,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddEmail", function() { return AddEmail; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_final_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-final-form */ "./node_modules/react-final-form/dist/react-final-form.es.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_final_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-final-form */ "./node_modules/react-final-form/dist/react-final-form.es.js");
+/* harmony import */ var final_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! final-form */ "./node_modules/final-form/dist/final-form.es.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -285,14 +294,15 @@ var EmailForm = function EmailForm(props) {
   var emails = props.emails,
       handleSubmit = props.handleSubmit,
       error = props.error;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Form"], {
     onSubmit: handleSubmit,
     initialValues: {
-      firstName: "",
-      email: ""
+      firstName: '',
+      email: ''
     },
     render: function render(_ref) {
       var handleSubmit = _ref.handleSubmit,
+          submitError = _ref.submitError,
           form = _ref.form;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit:
@@ -310,7 +320,14 @@ var EmailForm = function EmailForm(props) {
                     return handleSubmit(e);
 
                   case 3:
-                    form.reset();
+                    if (submitError === "undefined") {
+                      form.reset();
+                    } else {
+                      setTimeout(function () {
+                        form.reset();
+                      }, 2400);
+                    }
+
                     _context.next = 9;
                     break;
 
@@ -331,33 +348,81 @@ var EmailForm = function EmailForm(props) {
             return _ref2.apply(this, arguments);
           };
         }()
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
         name: "firstName",
         component: "input",
         placeholder: "First Name"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-        name: "email",
-        component: "input",
-        placeholder: "email"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+        name: "email"
+      }, function (_ref3) {
+        var input = _ref3.input,
+            meta = _ref3.meta;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, input, {
+          type: "text",
+          placeholder: "Email"
+        })), (meta.error || meta.submitError) && meta.touched && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, meta.error || meta.submitError));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
         variant: "success",
         type: "submit"
-      }, "add email"));
+      }, "add email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, submitError && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error"
+      }, submitError) // not showing
+      ));
     }
   }));
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {
-    handleSubmit: function handleSubmit(props, e) {
-      var firstNameVal = props.firstName;
-      var emailVal = props.email;
-      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["addEmail"])(firstNameVal, emailVal));
-    }
+    handleSubmit: function () {
+      var _handleSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2(props, e) {
+        var firstNameVal, emailVal, result, validate, errors;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                firstNameVal = props.firstName;
+                emailVal = props.email;
+                _context2.prev = 2;
+                result = dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_5__["addEmail"])(firstNameVal, emailVal)); //push this into some helper? this is allow us to test if the creation of the email will fail
+
+                _context2.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/emails', {
+                  firstNameVal: firstNameVal,
+                  emailVal: emailVal
+                });
+
+              case 6:
+                validate = _context2.sent;
+                _context2.next = 13;
+                break;
+
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](2);
+                errors = _context2.t0.response.data.errors;
+                return _context2.abrupt("return", _defineProperty({}, final_form__WEBPACK_IMPORTED_MODULE_3__["FORM_ERROR"], 'email already in use!'));
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[2, 9]]);
+      }));
+
+      function handleSubmit(_x2, _x3) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   };
 };
 
-var AddEmail = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, mapDispatch)(EmailForm);
+var AddEmail = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatch)(EmailForm);
 
 /***/ }),
 
@@ -1684,22 +1749,25 @@ var addEmail = function addEmail(firstName, email) {
 
               case 3:
                 add = _context.sent;
+                console.log('this is adding the email', add.data);
                 dispatch(getEmails(add.data)); // history.push('/home/addEmail')
 
-                _context.next = 10;
+                _context.next = 11;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](0);
-                console.error(_context.t0);
+                dispatch(getEmails({
+                  error: _context.t0
+                }));
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[0, 8]]);
       }));
 
       return function (_x) {
