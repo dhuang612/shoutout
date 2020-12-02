@@ -24,10 +24,7 @@ export const UserHome = props => {
     return (
       <div>
         {greeting}
-        <p id="ownerInfo">
-          Please add emails and send out invites to allow users to send
-          shoutouts!
-        </p>
+        <p id="ownerInfo">Add emails and send out invites today!</p>
         <div id="options">
           <div>
             {' '}

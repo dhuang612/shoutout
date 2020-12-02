@@ -255,6 +255,34 @@ AuthForm.propTypes = {
 
 /***/ }),
 
+/***/ "./client/components/email-form.css":
+/*!******************************************!*\
+  !*** ./client/components/email-form.css ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_email_form_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!./email-form.css */ "./node_modules/css-loader/dist/cjs.js!./client/components/email-form.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_email_form_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_email_form_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./client/components/email-form.js":
 /*!*****************************************!*\
   !*** ./client/components/email-form.js ***!
@@ -274,6 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _email_form_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./email-form.css */ "./client/components/email-form.css");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -281,6 +310,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -320,12 +350,12 @@ var EmailForm = function EmailForm(props) {
                     return handleSubmit(e);
 
                   case 3:
-                    if (submitError === "undefined") {
+                    if (submitError === 'undefined') {
                       form.reset();
                     } else {
                       setTimeout(function () {
                         form.reset();
-                      }, 2400);
+                      }, 2500);
                     }
 
                     _context.next = 9;
@@ -364,7 +394,9 @@ var EmailForm = function EmailForm(props) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
         variant: "success",
         type: "submit"
-      }, "add email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, submitError && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "add email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "errorMsg"
+      }, submitError && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error"
       }, submitError) // not showing
       ));
@@ -1401,7 +1433,7 @@ var UserHome = function UserHome(props) {
   if (invited) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, greeting, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       id: "ownerInfo"
-    }, "Please add emails and send out invites to allow users to send shoutouts!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Add emails and send out invites today!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "options"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/home/addEmail"
@@ -1749,25 +1781,24 @@ var addEmail = function addEmail(firstName, email) {
 
               case 3:
                 add = _context.sent;
-                console.log('this is adding the email', add.data);
                 dispatch(getEmails(add.data)); // history.push('/home/addEmail')
 
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](0);
                 dispatch(getEmails({
                   error: _context.t0
                 }));
 
-              case 11:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 7]]);
       }));
 
       return function (_x) {
@@ -1895,24 +1926,23 @@ var sendInviteEmail = function sendInviteEmail(firstName, email) {
 
                 if (emailToSend.data) {
                   _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home/showEmails');
-                }
+                } // emailToSend
 
-                console.log(emailToSend); // emailToSend
 
-                _context4.next = 11;
+                _context4.next = 10;
                 break;
 
-              case 8:
-                _context4.prev = 8;
+              case 7:
+                _context4.prev = 7;
                 _context4.t0 = _context4["catch"](0);
                 console.error(_context4.t0);
 
-              case 11:
+              case 10:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 8]]);
+        }, _callee4, null, [[0, 7]]);
       }));
 
       return function (_x4) {
@@ -2214,22 +2244,20 @@ var sendShoutouts = function sendShoutouts(email, msg, name) {
 
               case 3:
                 shoutoutToSend = _context4.sent;
-                console.log('shoutoutToSend holds', shoutoutToSend); // history.push('/home/showShoutouts')
-
-                _context4.next = 10;
+                _context4.next = 9;
                 break;
 
-              case 7:
-                _context4.prev = 7;
+              case 6:
+                _context4.prev = 6;
                 _context4.t0 = _context4["catch"](0);
                 console.error(_context4.t0);
 
-              case 10:
+              case 9:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, null, [[0, 7]]);
+        }, _callee4, null, [[0, 6]]);
       }));
 
       return function (_x4) {
@@ -2375,18 +2403,17 @@ var auth = function auth(email, password, method) {
 
               case 3:
                 res = _context2.sent;
-                console.log('this is what is returned from signup', res.data);
-                _context2.next = 10;
+                _context2.next = 9;
                 break;
 
-              case 7:
-                _context2.prev = 7;
+              case 6:
+                _context2.prev = 6;
                 _context2.t0 = _context2["catch"](0);
                 return _context2.abrupt("return", dispatch(getUser({
                   error: _context2.t0
                 })));
 
-              case 10:
+              case 9:
                 try {
                   dispatch(getUser(res.data));
 
@@ -2399,12 +2426,12 @@ var auth = function auth(email, password, method) {
                   console.error(dispatchOrHistoryErr);
                 }
 
-              case 11:
+              case 10:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee2, null, [[0, 6]]);
       }));
 
       return function (_x2) {
@@ -2426,29 +2453,26 @@ var inviteAuth = function inviteAuth(email, password, id) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.prev = 0;
-                console.log(email);
-                _context3.next = 4;
+                _context3.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/auth/signup/invite', {
                   email: email,
                   password: password,
                   id: id
                 });
 
-              case 4:
+              case 3:
                 res = _context3.sent;
-                console.log('this is res', res); // console.log(data)
-
-                _context3.next = 11;
+                _context3.next = 9;
                 break;
 
-              case 8:
-                _context3.prev = 8;
+              case 6:
+                _context3.prev = 6;
                 _context3.t0 = _context3["catch"](0);
                 return _context3.abrupt("return", dispatch(getUser({
                   error: _context3.t0
                 })));
 
-              case 11:
+              case 9:
                 try {
                   dispatch(getUser(res.data));
                   _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home');
@@ -2456,12 +2480,12 @@ var inviteAuth = function inviteAuth(email, password, id) {
                   console.error(dispatchOrHistoryErr);
                 }
 
-              case 12:
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3, null, [[0, 6]]);
       }));
 
       return function (_x3) {
@@ -16698,6 +16722,31 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.i, "#form {\n  width: 350px;\n  margin-left: 25px;\n  text-align: center;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #c2d6d6;\n}\n\n.authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  text-align: center;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n}\n\n#email {\n  margin-left: 47px;\n  margin-right: 24px;\n}\n\n#password {\n  margin-left: 40px;\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n\n#errMsg {\n  font-size: 14px;\n  color: #fa050f;\n}\n", "",{"version":3,"sources":["webpack://./client/components/auth-form.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,iBAAiB;EACjB,kBAAkB;EAClB,uBAAuB;EACvB,mBAAmB;EACnB,yBAAyB;AAC3B;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,6BAA6B;EAC7B,iBAAiB;EACjB,kBAAkB;EAClB,YAAY;EACZ,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,eAAe;EACf,cAAc;AAChB","sourcesContent":["#form {\n  width: 350px;\n  margin-left: 25px;\n  text-align: center;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #c2d6d6;\n}\n\n.authInfo {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n  text-align: right;\n  text-align: center;\n  width: 200px;\n  line-height: 1.6;\n  padding-left: 30px;\n}\n\n#email {\n  margin-left: 47px;\n  margin-right: 24px;\n}\n\n#password {\n  margin-left: 40px;\n  margin-right: 20px;\n}\n\nlabel {\n  margin-right: 10px;\n}\n\n#errMsg {\n  font-size: 14px;\n  color: #fa050f;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/components/email-form.css":
+/*!********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/components/email-form.css ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, "#errorMsg {\n    font-size: 14px;\n    color: #fa050f;\n  }", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;IACI,eAAe;IACf,cAAc;EAChB","sourcesContent":["#errorMsg {\n    font-size: 14px;\n    color: #fa050f;\n  }"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

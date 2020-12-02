@@ -1,13 +1,15 @@
-import React, {useRef} from 'react'
+import React from 'react'
 import axios from 'axios'
 import {Form, Field} from 'react-final-form'
 import {FORM_ERROR} from 'final-form'
 import {connect} from 'react-redux'
 import {addEmail} from '../store'
 import Button from 'react-bootstrap/Button'
+import './email-form.css'
 
 const EmailForm = props => {
   const {emails, handleSubmit, error} = props
+
   return (
     <div>
       <Form
@@ -23,7 +25,7 @@ const EmailForm = props => {
                 } else {
                   setTimeout(() => {
                     form.reset()
-                  }, 2400)
+                  }, 2500)
                 }
               } catch (error) {
                 console.error(error)
@@ -57,7 +59,7 @@ const EmailForm = props => {
                 add email
               </Button>
             </div>
-            <div>
+            <div id="errorMsg">
               {submitError && (
                 <div className="error">{submitError}</div> // not showing
               )}
