@@ -38,7 +38,6 @@ router.post('/new', async (req, res, next) => {
         //magic method given to us by sequelize
         const createNewSO = await user.createShoutout(paramsObj)
         if (createNewSO) {
-          console.log('this is our new shoutout', createNewSO)
           res.status(200).send('successfully made new SO')
         } else {
           res.status(401).send('something went wrong')

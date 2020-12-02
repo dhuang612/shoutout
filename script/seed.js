@@ -49,15 +49,6 @@ async function seed() {
           email: 'dan@email.com'
         })
         let setId = 2
-        // let shoutoutObj = {
-        //   shoutoutId: addShoutout.id
-        // }
-        // const setEmail = await userThree.setEmails(id, shoutoutObj)
-        //  const setShoutout = await userThree.setEmails(id, emailObj);
-        // console.log(`seeded ${addShoutout.length} shoutouts`)
-        // console.log('this is what addInfo holds',addInfo)
-        // console.log(`created ${addShoutout.length} shoutouts`)
-        // console.log(addShoutout)
       }
       console.log(`seeded successfully`)
     }

@@ -16,16 +16,16 @@ router.post('/', async (req, res, next) => {
       if (checkIfEmailExists) {
         res.status(401).json('email already in use!')
       } else if (user.usedValidEmail(req.body.email)) {
-          const addEmail = user.createEmail({
-            firstName: req.body.firstName,
-            email: req.body.email
-          })
-          if (addEmail) {
-            res.status(200).send('successfully added email!')
-          } else {
-            res.status(401).send('something went wrong')
-          }
+        const addEmail = user.createEmail({
+          firstName: req.body.firstName,
+          email: req.body.email
+        })
+        if (addEmail) {
+          res.status(200).send('successfully added email!')
+        } else {
+          res.status(401).send('something went wrong')
         }
+      }
     }
   } catch (error) {
     next(error)
@@ -43,7 +43,6 @@ router.post('/all', async (req, res, next) => {
         email: req.body.email
       }
       const addEmails = await user.addEmails(emailObj)
-      console.log(addEmails)
       if (addEmails) {
         res.status(200).send('successfully added!')
       }
@@ -111,7 +110,6 @@ router.post('/sendInvite', async (req, res, next) => {
           email: req.body.email
         }
       })
-      console.log('this is what emailToFind holds', emailToFind)
       emailToFind.sent = true
       await emailToFind.save()
       res.status(200).send('successfully sent so!')

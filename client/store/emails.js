@@ -18,7 +18,7 @@ const getSingleEmail = email => ({
 export const addEmail = (firstName, email) => async dispatch => {
   try {
     const add = await axios.post('/api/emails', {firstName, email})
-    console.log('this is adding the email', add.data)
+
     dispatch(getEmails(add.data))
 
     // history.push('/home/addEmail')
@@ -59,7 +59,7 @@ export const sendInviteEmail = (firstName, email) => async dispatch => {
     if (emailToSend.data) {
       history.push('/home/showEmails')
     }
-    console.log(emailToSend)
+
     // emailToSend
   } catch (error) {
     console.error(error)

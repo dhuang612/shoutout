@@ -11,12 +11,10 @@ router.post('/login', async (req, res, next) => {
       where: {email: req.body.email, isVerified: {[Op.or]: ['true', 'false']}}
     })
     if (!user) {
-      console.log('No such user found:', req.body.email)
       res.status(401).send('no user found')
     } else if (!user.isVerified) {
       res.status(401).send('awaiting email verification')
     } else if (!user.correctPassword(req.body.password)) {
-      console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
       req.login(user, err => (err ? next(err) : res.json(user)))
@@ -50,7 +48,6 @@ router.post('/signup', async (req, res, next) => {
       }
 
       const sendEmail = sender.sendEmail(data)
-      // console.log('this is sendEmail', sendEmail)
       if (sendEmail === '') {
         return res
           .status(401)
@@ -72,7 +69,6 @@ router.post('/signup', async (req, res, next) => {
 
 //route for email verification
 router.get('/confirmation/:token', async (req, res, next) => {
-  console.log('this is the token we are trying to use', req.params.token)
   const findUser = await User.findOne({
     where: {
       token: req.params.token

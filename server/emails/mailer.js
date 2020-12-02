@@ -27,15 +27,6 @@ const sendEmail = async data => {
   }
   //send the email
 
-  // try {
-  //   const mail = await sgMail.send(msg, (err, res) => {
-  //     if (msg.dynamic_template_data.verify_url) {
-  //       console.log('Please check your Email for account confirmation')
-  //     }
-  //   })
-  // } catch (err) {
-  //   console.error(err)
-  // }
   sgMail.send(msg, (error, result) => {
     if (error) {
       console.log(error)
