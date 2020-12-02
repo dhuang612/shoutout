@@ -2,18 +2,150 @@
   text-align: center;
 }
 
+.addShoutout {
+  margin-left: 25px;
+  outline: none;
+  color: #ffd24c;
+  outline: none;
+  text-decoration: none;
+}
+
+.addShoutout:link {
+  color: #ffd24c;
+}
+
+.addShoutout:visited {
+  color: #ffd670;
+}
+
+.addShoutout:focus {
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.addShoutout:hover {
+  color: #ffd24c;
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.addShoutout:active {
+  color: #ffe136;
+}
+
+.showShoutout {
+  margin-left: 25px;
+  outline: none;
+  color: #ffd24c;
+  outline: none;
+  text-decoration: none;
+}
+
+.showShoutout:link {
+  color: #ffd24c;
+}
+
+.showShoutout:visited {
+  color: #ffd670;
+}
+
+.showShoutout:focus {
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.showShoutout:hover {
+  color: #ffd24c;
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.showShoutout:active {
+  color: #ffe136;
+}
+
 #ownerInfo {
   margin-left: 15px;
 }
 
-#invitedInfo {
+.addEmails {
+  margin-left: 25px;
+  outline: none;
+  color: #ffd24c;
+  outline: none;
+  text-decoration: none;
+}
+
+.addEmails:link {
+  color: #ffd24c;
+}
+
+.addEmails:visited {
+  color: #ffd670;
+}
+
+.addEmails:focus {
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.addEmails:hover {
+  color: #ffd24c;
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.addEmails:active {
+  color: #ffe136;
+}
+
+.showEmails {
+  margin-left: 25px;
+  outline: none;
+  color: #ffd24c;
+  outline: none;
+  text-decoration: none;
+}
+
+.showEmails:link {
+  color: #ffd24c;
+}
+
+.showEmails:visited {
+  color: #ffd670;
+}
+
+.showEmails:focus {
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.showEmails:hover {
+  color: #ffd24c;
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+.showEmails:active {
+  color: #ffe136;
+}
+
+.invitedInfo {
   margin-left: 15px;
 }
 
-#invitedLinks {
+.invitedLinks {
   margin-left: 15px;
 }
 
-#options {
+.options {
   margin-left: 15px;
 }

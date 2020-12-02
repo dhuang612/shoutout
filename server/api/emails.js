@@ -8,9 +8,11 @@ router.post('/', async (req, res, next) => {
   try {
     if (req.body) {
       const user = req.user
+      const emailToFind = req.body.email
+      console.log('this is what we are passing back to express', emailToFind)
       const checkIfEmailExists = await Emails.findOne({
         where: {
-          email: req.body.email
+          email: emailToFind
         }
       })
       if (checkIfEmailExists) {
@@ -25,26 +27,6 @@ router.post('/', async (req, res, next) => {
         } else {
           res.status(401).send('something went wrong')
         }
-      }
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-//future goal setup a route to add multiple emails
-router.post('/all', async (req, res, next) => {
-  try {
-    if (req.body) {
-      const user = req.user
-      let idNum = 1
-      let emailObj = {
-        id: idNum + 1,
-        firstName: req.body.firstName,
-        email: req.body.email
-      }
-      const addEmails = await user.addEmails(emailObj)
-      if (addEmails) {
-        res.status(200).send('successfully added!')
       }
     }
   } catch (error) {

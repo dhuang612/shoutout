@@ -16,7 +16,10 @@ export class ShoutoutList extends Component {
           {shoutouts.length ? (
             shoutouts.map(({id, name, email}) => (
               <div key={id}>
-                <Link to={`/home/showShoutouts/${id}`}>
+                <Link
+                  className="showOneShoutout"
+                  to={`/home/showShoutouts/${id}`}
+                >
                   <div>{name}</div>
                 </Link>
                 <div>{email}</div>
@@ -26,7 +29,9 @@ export class ShoutoutList extends Component {
             <div id="noShoutouts">
               No shoutouts
               <div className="link">
-                <Link to="/home/addShoutout">add new shoutout</Link>
+                <Link className="addShoutout" to="/home/addShoutout">
+                  add new shoutout
+                </Link>
               </div>
             </div>
           )}

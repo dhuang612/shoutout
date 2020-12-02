@@ -78,11 +78,16 @@ const mapDispatch = dispatch => {
       const emailVal = props.email
       try {
         const result = dispatch(addEmail(firstNameVal, emailVal))
+        console.log(
+          'this is us sending info back',
+          addEmail(firstNameVal, emailVal)
+        )
         //push this into some helper? this is allow us to test if the creation of the email will fail
-        const validate = await axios.post('/api/emails', {
-          firstNameVal,
-          emailVal
-        })
+        // const validate = await axios.post('/api/emails', {
+        //   firstNameVal,
+        //   emailVal
+        // })
+        // console.log('this is validate', validate)
       } catch (error) {
         let errors
         errors = error.response.data.errors

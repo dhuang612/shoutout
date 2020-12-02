@@ -13,10 +13,14 @@ export const UserHome = props => {
   let greeting = <h3 id="greeting">Welcome, {email}</h3>
   let alwaysShow = (
     <div id="shownToEveryone">
-      <Link to="/home/addShoutout">create a new shoutout</Link>
+      <Link className="addShoutout" to="/home/addShoutout">
+        create a new shoutout
+      </Link>
       <div>
         {' '}
-        <Link to="/home/showShoutouts">show shoutouts list</Link>
+        <Link className="showShoutout" to="/home/showShoutouts">
+          show shoutouts list
+        </Link>
       </div>
     </div>
   )
@@ -28,11 +32,15 @@ export const UserHome = props => {
         <div id="options">
           <div>
             {' '}
-            <Link to="/home/addEmail">add new emails</Link>
+            <Link className="addEmails" to="/home/addEmail">
+              add new emails
+            </Link>
           </div>
           {alwaysShow}
           <div>
-            <Link to="/home/showEmails">show email list</Link>
+            <Link className="showEmails" to="/home/showEmails">
+              show email list
+            </Link>
           </div>
         </div>
       </div>

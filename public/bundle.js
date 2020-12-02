@@ -410,7 +410,7 @@ var mapDispatch = function mapDispatch(dispatch) {
       var _handleSubmit = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2(props, e) {
-        var firstNameVal, emailVal, result, validate, errors;
+        var firstNameVal, emailVal, result, errors;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -418,31 +418,29 @@ var mapDispatch = function mapDispatch(dispatch) {
                 firstNameVal = props.firstName;
                 emailVal = props.email;
                 _context2.prev = 2;
-                result = dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_5__["addEmail"])(firstNameVal, emailVal)); //push this into some helper? this is allow us to test if the creation of the email will fail
+                result = dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_5__["addEmail"])(firstNameVal, emailVal));
+                console.log('this is us sending info back', Object(_store__WEBPACK_IMPORTED_MODULE_5__["addEmail"])(firstNameVal, emailVal)); //push this into some helper? this is allow us to test if the creation of the email will fail
+                // const validate = await axios.post('/api/emails', {
+                //   firstNameVal,
+                //   emailVal
+                // })
+                // console.log('this is validate', validate)
 
-                _context2.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/emails', {
-                  firstNameVal: firstNameVal,
-                  emailVal: emailVal
-                });
-
-              case 6:
-                validate = _context2.sent;
-                _context2.next = 13;
+                _context2.next = 11;
                 break;
 
-              case 9:
-                _context2.prev = 9;
+              case 7:
+                _context2.prev = 7;
                 _context2.t0 = _context2["catch"](2);
                 errors = _context2.t0.response.data.errors;
                 return _context2.abrupt("return", _defineProperty({}, final_form__WEBPACK_IMPORTED_MODULE_3__["FORM_ERROR"], 'email already in use!'));
 
-              case 13:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[2, 9]]);
+        }, _callee2, null, [[2, 7]]);
       }));
 
       function handleSubmit(_x2, _x3) {
@@ -556,6 +554,7 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            className: "showOneShoutout",
             to: "/home/showEmails/".concat(id)
           }, email), ' ', sent ? '✓' : '');
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -563,6 +562,7 @@ function (_Component) {
         }, "No emails", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          className: "addEmails",
           to: "/home/addEmail"
         }, "add new emails"))));
       } else {
@@ -1056,6 +1056,7 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            className: "showOneShoutout",
             to: "/home/showShoutouts/".concat(id)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, email));
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1063,6 +1064,7 @@ function (_Component) {
         }, "No shoutouts", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          className: "addShoutout",
           to: "/home/addShoutout"
         }, "add new shoutout"))));
       } else {
@@ -1190,7 +1192,7 @@ function (_Component) {
         onHide: this.handleClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Header, {
         closeButton: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Title, null, "Confirm sending invite email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, emailToShow), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, nameToShow)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Title, null, "Confirm sending invite email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, nameToShow), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, emailToShow)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_1__["default"].Footer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
         variant: "secondary",
         onClick: this.handleClose
       }, "Close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1425,8 +1427,10 @@ var UserHome = function UserHome(props) {
   var alwaysShow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "shownToEveryone"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "addShoutout",
     to: "/home/addShoutout"
   }, "create a new shoutout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "showShoutout",
     to: "/home/showShoutouts"
   }, "show shoutouts list")));
 
@@ -1436,8 +1440,10 @@ var UserHome = function UserHome(props) {
     }, "Add emails and send out invites today!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "options"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      className: "addEmails",
       to: "/home/addEmail"
     }, "add new emails")), alwaysShow, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      className: "showEmails",
       to: "/home/showEmails"
     }, "show email list"))));
   } else {
@@ -16746,7 +16752,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#errorMsg {\n    font-size: 14px;\n    color: #fa050f;\n  }", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;IACI,eAAe;IACf,cAAc;EAChB","sourcesContent":["#errorMsg {\n    font-size: 14px;\n    color: #fa050f;\n  }"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#errorMsg {\n  font-size: 14px;\n  color: #fa050f;\n}\n", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,cAAc;AAChB","sourcesContent":["#errorMsg {\n  font-size: 14px;\n  color: #fa050f;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16846,7 +16852,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#shoutouts {\n  margin-left: 15px;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n.link {\n  margin-left: 30px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutoutList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#shoutouts {\n  margin-left: 15px;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n.link {\n  margin-left: 30px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#shoutouts {\n  margin-left: 15px;\n}\n\n\n\n.showOneShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showOneShoutout:link{\n  color:#ffd24c;\n}\n\n.showOneShoutout:visited{\n  color: #ffd670;\n}\n\n.showOneShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:active{\n  color: #ffe136;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n", "",{"version":3,"sources":["webpack://./client/components/shoutoutList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;;;AAIA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#shoutouts {\n  margin-left: 15px;\n}\n\n\n\n.showOneShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showOneShoutout:link{\n  color:#ffd24c;\n}\n\n.showOneShoutout:visited{\n  color: #ffd670;\n}\n\n.showOneShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:active{\n  color: #ffe136;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16871,7 +16877,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#greeting {\n  text-align: center;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n#invitedInfo {\n  margin-left: 15px;\n}\n\n#invitedLinks {\n  margin-left: 15px;\n}\n\n#options {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/user-home.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#greeting {\n  text-align: center;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n#invitedInfo {\n  margin-left: 15px;\n}\n\n#invitedLinks {\n  margin-left: 15px;\n}\n\n#options {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#greeting {\n  text-align: center;\n}\n\n.addShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addShoutout:link{\n  color:#ffd24c;\n}\n\n.addShoutout:visited{\n  color: #ffd670;\n}\n\n.addShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:active{\n  color: #ffe136;\n}\n\n.showShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showShoutout:link{\n  color:#ffd24c;\n}\n\n.showShoutout:visited{\n  color: #ffd670;\n}\n\n.showShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:active{\n  color: #ffe136;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n.addEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addEmails:link{\n  color:#ffd24c;\n}\n\n.addEmails:visited{\n  color: #ffd670;\n}\n\n.addEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:active{\n  color: #ffe136;\n}\n\n.showEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showEmails:link{\n  color:#ffd24c;\n}\n\n.showEmails:visited{\n  color: #ffd670;\n}\n\n.showEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:active{\n  color: #ffe136;\n}\n\n\n.invitedInfo {\n  margin-left: 15px;\n}\n\n.invitedLinks {\n  margin-left: 15px;\n}\n\n.options {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/user-home.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;;AAGA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#greeting {\n  text-align: center;\n}\n\n.addShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addShoutout:link{\n  color:#ffd24c;\n}\n\n.addShoutout:visited{\n  color: #ffd670;\n}\n\n.addShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:active{\n  color: #ffe136;\n}\n\n.showShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showShoutout:link{\n  color:#ffd24c;\n}\n\n.showShoutout:visited{\n  color: #ffd670;\n}\n\n.showShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:active{\n  color: #ffe136;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n.addEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addEmails:link{\n  color:#ffd24c;\n}\n\n.addEmails:visited{\n  color: #ffd670;\n}\n\n.addEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:active{\n  color: #ffe136;\n}\n\n.showEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showEmails:link{\n  color:#ffd24c;\n}\n\n.showEmails:visited{\n  color: #ffd670;\n}\n\n.showEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:active{\n  color: #ffe136;\n}\n\n\n.invitedInfo {\n  margin-left: 15px;\n}\n\n.invitedLinks {\n  margin-left: 15px;\n}\n\n.options {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
