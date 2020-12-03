@@ -298,13 +298,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_final_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-final-form */ "./node_modules/react-final-form/dist/react-final-form.es.js");
-/* harmony import */ var final_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! final-form */ "./node_modules/final-form/dist/final-form.es.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var final_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! final-form */ "./node_modules/final-form/dist/final-form.es.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _email_form_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./email-form.css */ "./client/components/email-form.css");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -320,62 +318,115 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var emailExists =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee(values) {
+    var errors, checkEmail;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            errors = {};
+            _context.prev = 1;
+
+            if (!values.email.endsWith('.com')) {
+              _context.next = 10;
+              break;
+            }
+
+            console.log('validating!');
+            console.log('this is what we are passing back', values.email);
+            _context.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/emails/showAllEmails", values.email);
+
+          case 7:
+            checkEmail = _context.sent;
+
+            if (checkEmail.data.length > 0) {
+              checkEmail.data.map(function (email) {
+                if (email.email === values.email) {
+                  console.log('email found!');
+                  errors.email = "email exists!";
+                }
+              });
+            }
+
+            return _context.abrupt("return", errors);
+
+          case 10:
+            _context.next = 15;
+            break;
+
+          case 12:
+            _context.prev = 12;
+            _context.t0 = _context["catch"](1);
+            console.error(_context.t0);
+
+          case 15:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 12]]);
+  }));
+
+  return function emailExists(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
 var EmailForm = function EmailForm(props) {
   var emails = props.emails,
       handleSubmit = props.handleSubmit,
       error = props.error;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Form"], {
     onSubmit: handleSubmit,
+    validate: emailExists,
     initialValues: {
-      firstName: '',
-      email: ''
+      email: '',
+      firstName: ""
     },
-    render: function render(_ref) {
-      var handleSubmit = _ref.handleSubmit,
-          submitError = _ref.submitError,
-          form = _ref.form;
+    render: function render(_ref2) {
+      var handleSubmit = _ref2.handleSubmit,
+          submitError = _ref2.submitError,
+          form = _ref2.form;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit:
         /*#__PURE__*/
         function () {
-          var _ref2 = _asyncToGenerator(
+          var _ref3 = _asyncToGenerator(
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee(e) {
-            return regeneratorRuntime.wrap(function _callee$(_context) {
+          regeneratorRuntime.mark(function _callee2(e) {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
               while (1) {
-                switch (_context.prev = _context.next) {
+                switch (_context2.prev = _context2.next) {
                   case 0:
-                    _context.prev = 0;
-                    _context.next = 3;
+                    _context2.prev = 0;
+                    _context2.next = 3;
                     return handleSubmit(e);
 
                   case 3:
-                    if (submitError === 'undefined') {
-                      form.reset();
-                    } else {
-                      setTimeout(function () {
-                        form.reset();
-                      }, 2500);
-                    }
-
-                    _context.next = 9;
+                    _context2.next = 8;
                     break;
 
-                  case 6:
-                    _context.prev = 6;
-                    _context.t0 = _context["catch"](0);
-                    console.error(_context.t0);
+                  case 5:
+                    _context2.prev = 5;
+                    _context2.t0 = _context2["catch"](0);
+                    console.error(_context2.t0);
 
-                  case 9:
+                  case 8:
                   case "end":
-                    return _context.stop();
+                    return _context2.stop();
                 }
               }
-            }, _callee, null, [[0, 6]]);
+            }, _callee2, null, [[0, 5]]);
           }));
 
-          return function (_x) {
-            return _ref2.apply(this, arguments);
+          return function (_x2) {
+            return _ref3.apply(this, arguments);
           };
         }()
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
@@ -384,9 +435,9 @@ var EmailForm = function EmailForm(props) {
         placeholder: "First Name"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
         name: "email"
-      }, function (_ref3) {
-        var input = _ref3.input,
-            meta = _ref3.meta;
+      }, function (_ref4) {
+        var input = _ref4.input,
+            meta = _ref4.meta;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, input, {
           type: "text",
           placeholder: "Email"
@@ -409,41 +460,32 @@ var mapDispatch = function mapDispatch(dispatch) {
     handleSubmit: function () {
       var _handleSubmit = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(props, e) {
-        var firstNameVal, emailVal, result, errors;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      regeneratorRuntime.mark(function _callee3(props, e) {
+        var firstNameVal, emailVal;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 firstNameVal = props.firstName;
                 emailVal = props.email;
-                _context2.prev = 2;
-                result = dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_5__["addEmail"])(firstNameVal, emailVal));
-                console.log('this is us sending info back', Object(_store__WEBPACK_IMPORTED_MODULE_5__["addEmail"])(firstNameVal, emailVal)); //push this into some helper? this is allow us to test if the creation of the email will fail
-                // const validate = await axios.post('/api/emails', {
-                //   firstNameVal,
-                //   emailVal
-                // })
-                // console.log('this is validate', validate)
 
-                _context2.next = 11;
-                break;
+                try {
+                  dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["addEmail"])(firstNameVal, emailVal)); // if(values === "complete(errors)"){
+                  //   console.log('something went wrong...')
+                  // }
+                } catch (error) {
+                  console.log(error);
+                }
 
-              case 7:
-                _context2.prev = 7;
-                _context2.t0 = _context2["catch"](2);
-                errors = _context2.t0.response.data.errors;
-                return _context2.abrupt("return", _defineProperty({}, final_form__WEBPACK_IMPORTED_MODULE_3__["FORM_ERROR"], 'email already in use!'));
-
-              case 11:
+              case 3:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, null, [[2, 7]]);
+        }, _callee3);
       }));
 
-      function handleSubmit(_x2, _x3) {
+      function handleSubmit(_x3, _x4) {
         return _handleSubmit.apply(this, arguments);
       }
 
@@ -452,7 +494,7 @@ var mapDispatch = function mapDispatch(dispatch) {
   };
 };
 
-var AddEmail = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatch)(EmailForm);
+var AddEmail = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(null, mapDispatch)(EmailForm);
 
 /***/ }),
 
@@ -16852,7 +16894,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#shoutouts {\n  margin-left: 15px;\n}\n\n\n\n.showOneShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showOneShoutout:link{\n  color:#ffd24c;\n}\n\n.showOneShoutout:visited{\n  color: #ffd670;\n}\n\n.showOneShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:active{\n  color: #ffe136;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n", "",{"version":3,"sources":["webpack://./client/components/shoutoutList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;;;AAIA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#shoutouts {\n  margin-left: 15px;\n}\n\n\n\n.showOneShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showOneShoutout:link{\n  color:#ffd24c;\n}\n\n.showOneShoutout:visited{\n  color: #ffd670;\n}\n\n.showOneShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:active{\n  color: #ffe136;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#shoutouts {\n  margin-left: 15px;\n}\n\n.showOneShoutout {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showOneShoutout:link {\n  color: #ffd24c;\n}\n\n.showOneShoutout:visited {\n  color: #ffd670;\n}\n\n.showOneShoutout:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:active {\n  color: #ffe136;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutoutList.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#shoutouts {\n  margin-left: 15px;\n}\n\n.showOneShoutout {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showOneShoutout:link {\n  color: #ffd24c;\n}\n\n.showOneShoutout:visited {\n  color: #ffd670;\n}\n\n.showOneShoutout:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showOneShoutout:active {\n  color: #ffe136;\n}\n\n#noShoutouts {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16877,7 +16919,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#greeting {\n  text-align: center;\n}\n\n.addShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addShoutout:link{\n  color:#ffd24c;\n}\n\n.addShoutout:visited{\n  color: #ffd670;\n}\n\n.addShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:active{\n  color: #ffe136;\n}\n\n.showShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showShoutout:link{\n  color:#ffd24c;\n}\n\n.showShoutout:visited{\n  color: #ffd670;\n}\n\n.showShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:active{\n  color: #ffe136;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n.addEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addEmails:link{\n  color:#ffd24c;\n}\n\n.addEmails:visited{\n  color: #ffd670;\n}\n\n.addEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:active{\n  color: #ffe136;\n}\n\n.showEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showEmails:link{\n  color:#ffd24c;\n}\n\n.showEmails:visited{\n  color: #ffd670;\n}\n\n.showEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:active{\n  color: #ffe136;\n}\n\n\n.invitedInfo {\n  margin-left: 15px;\n}\n\n.invitedLinks {\n  margin-left: 15px;\n}\n\n.options {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/user-home.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;;AAGA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#greeting {\n  text-align: center;\n}\n\n.addShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addShoutout:link{\n  color:#ffd24c;\n}\n\n.addShoutout:visited{\n  color: #ffd670;\n}\n\n.addShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:active{\n  color: #ffe136;\n}\n\n.showShoutout{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showShoutout:link{\n  color:#ffd24c;\n}\n\n.showShoutout:visited{\n  color: #ffd670;\n}\n\n.showShoutout:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:active{\n  color: #ffe136;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n.addEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addEmails:link{\n  color:#ffd24c;\n}\n\n.addEmails:visited{\n  color: #ffd670;\n}\n\n.addEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:active{\n  color: #ffe136;\n}\n\n.showEmails{\n  margin-left:25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showEmails:link{\n  color:#ffd24c;\n}\n\n.showEmails:visited{\n  color: #ffd670;\n}\n\n.showEmails:focus{\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:hover{\n  color: #ffd24c;\n  border-bottom: 1px solid;     \n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:active{\n  color: #ffe136;\n}\n\n\n.invitedInfo {\n  margin-left: 15px;\n}\n\n.invitedLinks {\n  margin-left: 15px;\n}\n\n.options {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#greeting {\n  text-align: center;\n}\n\n.addShoutout {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addShoutout:link {\n  color: #ffd24c;\n}\n\n.addShoutout:visited {\n  color: #ffd670;\n}\n\n.addShoutout:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:active {\n  color: #ffe136;\n}\n\n.showShoutout {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showShoutout:link {\n  color: #ffd24c;\n}\n\n.showShoutout:visited {\n  color: #ffd670;\n}\n\n.showShoutout:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:active {\n  color: #ffe136;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n.addEmails {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addEmails:link {\n  color: #ffd24c;\n}\n\n.addEmails:visited {\n  color: #ffd670;\n}\n\n.addEmails:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:active {\n  color: #ffe136;\n}\n\n.showEmails {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showEmails:link {\n  color: #ffd24c;\n}\n\n.showEmails:visited {\n  color: #ffd670;\n}\n\n.showEmails:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:active {\n  color: #ffe136;\n}\n\n.invitedInfo {\n  margin-left: 15px;\n}\n\n.invitedLinks {\n  margin-left: 15px;\n}\n\n.options {\n  margin-left: 15px;\n}\n", "",{"version":3,"sources":["webpack://./client/components/user-home.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;EACd,aAAa;EACb,qBAAqB;AACvB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,wBAAwB;EACxB,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["#greeting {\n  text-align: center;\n}\n\n.addShoutout {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addShoutout:link {\n  color: #ffd24c;\n}\n\n.addShoutout:visited {\n  color: #ffd670;\n}\n\n.addShoutout:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addShoutout:active {\n  color: #ffe136;\n}\n\n.showShoutout {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showShoutout:link {\n  color: #ffd24c;\n}\n\n.showShoutout:visited {\n  color: #ffd670;\n}\n\n.showShoutout:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showShoutout:active {\n  color: #ffe136;\n}\n\n#ownerInfo {\n  margin-left: 15px;\n}\n\n.addEmails {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.addEmails:link {\n  color: #ffd24c;\n}\n\n.addEmails:visited {\n  color: #ffd670;\n}\n\n.addEmails:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.addEmails:active {\n  color: #ffe136;\n}\n\n.showEmails {\n  margin-left: 25px;\n  outline: none;\n  color: #ffd24c;\n  outline: none;\n  text-decoration: none;\n}\n\n.showEmails:link {\n  color: #ffd24c;\n}\n\n.showEmails:visited {\n  color: #ffd670;\n}\n\n.showEmails:focus {\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:hover {\n  color: #ffd24c;\n  border-bottom: 1px solid;\n  background: #fff30d;\n  border-radius: 5px;\n}\n\n.showEmails:active {\n  color: #ffe136;\n}\n\n.invitedInfo {\n  margin-left: 15px;\n}\n\n.invitedLinks {\n  margin-left: 15px;\n}\n\n.options {\n  margin-left: 15px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

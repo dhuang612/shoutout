@@ -1,11 +1,36 @@
 import React from 'react'
 import axios from 'axios'
 import {Form, Field} from 'react-final-form'
+import {addEmail} from '../store'
 import {FORM_ERROR} from 'final-form'
 import {connect} from 'react-redux'
-import {addEmail} from '../store'
 import Button from 'react-bootstrap/Button'
 import './email-form.css'
+
+const emailExists = async values => {
+  const errors = {}
+  try {
+    if (values.email.endsWith('.com')) {
+      console.log('validating!')
+      console.log('this is what we are passing back', values.email)
+      const checkEmail = await axios.get(
+        '/api/emails/showAllEmails',
+        values.email
+      )
+      if (checkEmail.data.length > 0) {
+        checkEmail.data.map(email => {
+          if (email.email === values.email) {
+            console.log('email found!')
+            errors.email = 'email exists!'
+          }
+        })
+      }
+      return errors
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 const EmailForm = props => {
   const {emails, handleSubmit, error} = props
@@ -14,19 +39,20 @@ const EmailForm = props => {
     <div>
       <Form
         onSubmit={handleSubmit}
-        initialValues={{firstName: '', email: ''}}
+        validate={emailExists}
+        initialValues={{email: '', firstName: ''}}
         render={({handleSubmit, submitError, form}) => (
           <form
             onSubmit={async e => {
               try {
                 await handleSubmit(e)
-                if (submitError === 'undefined') {
-                  form.reset()
-                } else {
-                  setTimeout(() => {
-                    form.reset()
-                  }, 2500)
-                }
+                // if (submitError === 'undefined') {
+                //   form.reset()
+                // } else {
+                //   setTimeout(() => {
+                //     form.reset()
+                //   }, 2500)
+                // }
               } catch (error) {
                 console.error(error)
               }
@@ -77,21 +103,12 @@ const mapDispatch = dispatch => {
       const firstNameVal = props.firstName
       const emailVal = props.email
       try {
-        const result = dispatch(addEmail(firstNameVal, emailVal))
-        console.log(
-          'this is us sending info back',
-          addEmail(firstNameVal, emailVal)
-        )
-        //push this into some helper? this is allow us to test if the creation of the email will fail
-        // const validate = await axios.post('/api/emails', {
-        //   firstNameVal,
-        //   emailVal
-        // })
-        // console.log('this is validate', validate)
+        dispatch(addEmail(firstNameVal, emailVal))
+        // if(values === "complete(errors)"){
+        //   console.log('something went wrong...')
+        // }
       } catch (error) {
-        let errors
-        errors = error.response.data.errors
-        return {[FORM_ERROR]: 'email already in use!'}
+        console.log(error)
       }
     }
   }
