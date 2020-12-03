@@ -21,7 +21,7 @@ const emailExists = async values => {
         checkEmail.data.map(email => {
           if (email.email === values.email) {
             console.log('email found!')
-            errors.email = 'email exists!'
+            errors.email = 'email already added!'
           }
         })
       }
@@ -43,16 +43,17 @@ const EmailForm = props => {
         initialValues={{email: '', firstName: ''}}
         render={({handleSubmit, submitError, form}) => (
           <form
+            id="addEmail-form"
             onSubmit={async e => {
               try {
                 await handleSubmit(e)
-                // if (submitError === 'undefined') {
-                //   form.reset()
-                // } else {
-                //   setTimeout(() => {
-                //     form.reset()
-                //   }, 2500)
-                // }
+                if (submitError === 'undefined') {
+                  form.reset()
+                } else {
+                  setTimeout(() => {
+                    form.reset()
+                  }, 2500)
+                }
               } catch (error) {
                 console.error(error)
               }
@@ -66,26 +67,28 @@ const EmailForm = props => {
                 placeholder="First Name"
               />
             </div>
-            <div>
+            <div id="emailInput">
               <Field name="email">
                 {({input, meta}) => (
-                  <div>
+                  <div id="emailValue">
                     <label>Email</label>
                     <input {...input} type="text" placeholder="Email" />
-                    {(meta.error || meta.submitError) &&
-                      meta.touched && (
-                        <span>{meta.error || meta.submitError}</span>
-                      )}
+                    <div id="errMsg">
+                      {(meta.error || meta.submitError) &&
+                        meta.touched && (
+                          <span className="error">{meta.error}</span>
+                        )}
+                    </div>
                   </div>
                 )}
               </Field>
             </div>
-            <div>
+            <div id="submitBtn">
               <Button variant="success" type="submit">
                 add email
               </Button>
             </div>
-            <div id="errorMsg">
+            <div>
               {submitError && (
                 <div className="error">{submitError}</div> // not showing
               )}
@@ -104,9 +107,6 @@ const mapDispatch = dispatch => {
       const emailVal = props.email
       try {
         dispatch(addEmail(firstNameVal, emailVal))
-        // if(values === "complete(errors)"){
-        //   console.log('something went wrong...')
-        // }
       } catch (error) {
         console.log(error)
       }

@@ -340,7 +340,7 @@ function () {
             console.log('validating!');
             console.log('this is what we are passing back', values.email);
             _context.next = 7;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/emails/showAllEmails", values.email);
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/emails/showAllEmails', values.email);
 
           case 7:
             checkEmail = _context.sent;
@@ -349,7 +349,7 @@ function () {
               checkEmail.data.map(function (email) {
                 if (email.email === values.email) {
                   console.log('email found!');
-                  errors.email = "email exists!";
+                  errors.email = 'email already added!';
                 }
               });
             }
@@ -387,13 +387,14 @@ var EmailForm = function EmailForm(props) {
     validate: emailExists,
     initialValues: {
       email: '',
-      firstName: ""
+      firstName: ''
     },
     render: function render(_ref2) {
       var handleSubmit = _ref2.handleSubmit,
           submitError = _ref2.submitError,
           form = _ref2.form;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "addEmail-form",
         onSubmit:
         /*#__PURE__*/
         function () {
@@ -409,20 +410,28 @@ var EmailForm = function EmailForm(props) {
                     return handleSubmit(e);
 
                   case 3:
-                    _context2.next = 8;
+                    if (submitError === 'undefined') {
+                      form.reset();
+                    } else {
+                      setTimeout(function () {
+                        form.reset();
+                      }, 2500);
+                    }
+
+                    _context2.next = 9;
                     break;
 
-                  case 5:
-                    _context2.prev = 5;
+                  case 6:
+                    _context2.prev = 6;
                     _context2.t0 = _context2["catch"](0);
                     console.error(_context2.t0);
 
-                  case 8:
+                  case 9:
                   case "end":
                     return _context2.stop();
                 }
               }
-            }, _callee2, null, [[0, 5]]);
+            }, _callee2, null, [[0, 6]]);
           }));
 
           return function (_x2) {
@@ -433,21 +442,29 @@ var EmailForm = function EmailForm(props) {
         name: "firstName",
         component: "input",
         placeholder: "First Name"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "emailInput"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
         name: "email"
       }, function (_ref4) {
         var input = _ref4.input,
             meta = _ref4.meta;
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, input, {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "emailValue"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, input, {
           type: "text",
           placeholder: "Email"
-        })), (meta.error || meta.submitError) && meta.touched && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, meta.error || meta.submitError));
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "errMsg"
+        }, (meta.error || meta.submitError) && meta.touched && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "error"
+        }, meta.error)));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "submitBtn"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
         variant: "success",
         type: "submit"
-      }, "add email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "errorMsg"
-      }, submitError && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "add email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, submitError && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error"
       }, submitError) // not showing
       ));
@@ -470,9 +487,7 @@ var mapDispatch = function mapDispatch(dispatch) {
                 emailVal = props.email;
 
                 try {
-                  dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["addEmail"])(firstNameVal, emailVal)); // if(values === "complete(errors)"){
-                  //   console.log('something went wrong...')
-                  // }
+                  dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["addEmail"])(firstNameVal, emailVal));
                 } catch (error) {
                   console.log(error);
                 }
@@ -16794,7 +16809,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#errorMsg {\n  font-size: 14px;\n  color: #fa050f;\n}\n", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,cAAc;AAChB","sourcesContent":["#errorMsg {\n  font-size: 14px;\n  color: #fa050f;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#addEmail-form{\n  width:450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items:flex-start;\n}\n\n#emailInput{\nalign-self: flex-start;\nmargin-top: 1px;\n}\n\n\n\n.error {\n  \n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn{\nmargin-left:310px;\n  align-self: flex-end;\n}", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,6BAA6B;EAC7B,sBAAsB;AACxB;;AAEA;AACA,sBAAsB;AACtB,eAAe;AACf;;;;AAIA;;EAEE,eAAe;EACf,cAAc;AAChB;;AAEA;AACA,iBAAiB;EACf,oBAAoB;AACtB","sourcesContent":["#addEmail-form{\n  width:450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items:flex-start;\n}\n\n#emailInput{\nalign-self: flex-start;\nmargin-top: 1px;\n}\n\n\n\n.error {\n  \n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn{\nmargin-left:310px;\n  align-self: flex-end;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

@@ -1,4 +1,23 @@
-#errorMsg {
+#addEmail-form {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+#emailInput {
+  align-self: flex-start;
+  margin-top: 1px;
+}
+
+.error {
   font-size: 14px;
   color: #fa050f;
+}
+
+#submitBtn {
+  margin-left: 310px;
+  align-self: flex-end;
 }
