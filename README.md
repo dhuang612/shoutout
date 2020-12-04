@@ -15,7 +15,3 @@ Original inviter is the only one who can allow new people to join.
 ## see a running application at:
 
 https://shoutouts-the-app.herokuapp.com/
-
-### for testing out application
-
-> use an email generator site such as: https://10minutemail.com/
