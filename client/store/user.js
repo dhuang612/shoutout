@@ -43,9 +43,6 @@ export const auth = (email, password, method) => async dispatch => {
     if (method === 'login') {
       history.push('/home')
     }
-    if (method === 'signup') {
-      history.push('/login')
-    }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

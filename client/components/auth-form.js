@@ -10,12 +10,10 @@ import './auth-form.css'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error, info} = props
-  console.log(info)
   let message = ''
-  if (Object.keys(info).length !== 0) {
+  if (Object.keys(info).length !== 0 && name === 'signup') {
     message = info
   }
-  console.log('this is message', message)
   return (
     <div>
       <form id="form" onSubmit={handleSubmit} name={name}>
@@ -32,11 +30,11 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div id="submit-btn">
+          <div id="emailVerify">{message}</div>
           <Button variant="primary" type="submit">
             {displayName}
           </Button>
         </div>
-        <div id="emailVerify">{message}</div>
         {error &&
           error.response && <div id="errMsg"> {error.response.data}</div>}
       </form>
@@ -65,7 +63,6 @@ const mapSignup = state => {
     name: 'signup',
     displayName: 'Sign Up',
     error: state.user.error,
-    // id: state.user,
     info: state.user
   }
 }
