@@ -9,7 +9,13 @@ import './auth-form.css'
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, error, info} = props
+  console.log(info)
+  let message = ''
+  if (Object.keys(info).length !== 0) {
+    message = info
+  }
+  console.log('this is message', message)
   return (
     <div>
       <form id="form" onSubmit={handleSubmit} name={name}>
@@ -30,8 +36,9 @@ const AuthForm = props => {
             {displayName}
           </Button>
         </div>
+        <div id="emailVerify">{message}</div>
         {error &&
-          error.response && <div id="errMsg"> {error.response.data} </div>}
+          error.response && <div id="errMsg"> {error.response.data}</div>}
       </form>
     </div>
   )
@@ -48,7 +55,8 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: state.user.error,
+    info: state.user
   }
 }
 
@@ -57,7 +65,8 @@ const mapSignup = state => {
     name: 'signup',
     displayName: 'Sign Up',
     error: state.user.error,
-    id: state.user
+    // id: state.user,
+    info: state.user
   }
 }
 

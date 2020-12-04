@@ -59,7 +59,8 @@ export const inviteAuth = (email, password, id) => async dispatch => {
     return dispatch(getUser({error: authError}))
   }
   try {
-    dispatch(getUser(res.data))
+    dispatch(getUser(res.data.user))
+    console.log(getUser(res.data.user))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

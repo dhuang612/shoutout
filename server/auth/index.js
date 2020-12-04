@@ -49,11 +49,11 @@ router.post('/signup', async (req, res, next) => {
 
       const sendEmail = sender.sendEmail(data)
 
-      res.status(201).json('Please check your Email for account confirmation')
+      res.status(201).json('Please check your Email for account verification')
     } else {
       const removeUser = await User.findByPk(user.id)
       await removeUser.destroy(req.body)
-      res.status(401).send('Invalid email!')
+      res.status(401).send({message: 'Invalid email!'})
     }
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
