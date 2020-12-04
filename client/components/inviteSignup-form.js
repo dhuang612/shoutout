@@ -6,7 +6,7 @@ import './inviteSignup-form.css'
 
 const InviteForm = props => {
   const {handleSubmit, error} = props
-  console.log(props)
+
   return (
     <div id="flex-container">
       <form id="inviteForm" onSubmit={handleSubmit} name={name}>

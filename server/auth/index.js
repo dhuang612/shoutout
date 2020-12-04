@@ -48,11 +48,8 @@ router.post('/signup', async (req, res, next) => {
       }
 
       const sendEmail = sender.sendEmail(data)
-      if (sendEmail === '') {
-        return res
-          .status(401)
-          .json('Please check your Email for account confirmation')
-      }
+
+      res.status(201).json('Please check your Email for account confirmation')
     } else {
       const removeUser = await User.findByPk(user.id)
       await removeUser.destroy(req.body)

@@ -92,19 +92,3 @@ router.post('/sendInvite', async (req, res, next) => {
     next(error)
   }
 })
-
-router.get('/checkEmail', async (req, res, next) => {
-  try {
-    console.log('these are the params we are getting', req.user)
-
-    // console.log('hitting this route with',req.params.email)
-    // const checkIFEmailExists = await Emails.findOne({where: {email: req.body.email}})
-    // if(checkIFEmailExists){
-    //   res.status(404).send("email already exists!")
-    // }else {
-    //   res.status(200).send("email not found")
-    // }
-  } catch (error) {
-    next(error)
-  }
-})
