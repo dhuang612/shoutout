@@ -382,6 +382,10 @@ function () {
   };
 }();
 
+var required = function required(value) {
+  return value ? undefined : "Required";
+};
+
 var EmailForm = function EmailForm(props) {
   var emails = props.emails,
       handleSubmit = props.handleSubmit,
@@ -396,7 +400,8 @@ var EmailForm = function EmailForm(props) {
     render: function render(_ref2) {
       var handleSubmit = _ref2.handleSubmit,
           submitError = _ref2.submitError,
-          form = _ref2.form;
+          form = _ref2.form,
+          pristine = _ref2.pristine;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "addEmail-form",
         onSubmit:
@@ -442,32 +447,42 @@ var EmailForm = function EmailForm(props) {
             return _ref3.apply(this, arguments);
           };
         }()
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
         name: "firstName",
-        component: "input",
-        placeholder: "First Name"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "emailInput"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-        name: "email"
+        validate: required
       }, function (_ref4) {
         var input = _ref4.input,
             meta = _ref4.meta;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "firstNameValue"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, input, {
+          type: "text",
+          placeholder: "First Name"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "errMsg"
+        }, (meta.error || meta.submitError) && meta.touched && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, meta.error || meta.submitError)));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "emailInput"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_final_form__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+        name: "email",
+        validate: required
+      }, function (_ref5) {
+        var input = _ref5.input,
+            meta = _ref5.meta;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "emailValue"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, input, {
           type: "text",
           placeholder: "Email"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "errMsg"
-        }, (meta.error || meta.submitError) && meta.touched && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "error"
-        }, meta.error || meta.submitError)));
+          className: "errMsg"
+        }, (meta.error || meta.submitError) && meta.touched && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, meta.error || meta.submitError)));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "submitBtn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
         variant: "success",
-        type: "submit"
+        type: "submit",
+        disabled: pristine
       }, "add email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, submitError && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error"
       }, submitError) // not showing
@@ -825,7 +840,11 @@ var Navbar = function Navbar(_ref) {
     id: "loggedIn"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/home"
-  }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/home/showEmails"
+  }, "Email List"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/home/showShoutouts"
+  }, "Shoutouts List"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     onClick: handleClick
   }, "Logout")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -16814,7 +16833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#addEmail-form {\n  margin-left: 10px;\n  margin-top: 15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 310px;\n  align-self: flex-end;\n}\n", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,uBAAuB;EACvB,mBAAmB;EACnB,yBAAyB;EACzB,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,6BAA6B;EAC7B,uBAAuB;AACzB;;AAEA;EACE,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,oBAAoB;AACtB","sourcesContent":["#addEmail-form {\n  margin-left: 10px;\n  margin-top: 15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 310px;\n  align-self: flex-end;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#addEmail-form {\n  margin-left: 20px;\n  margin-top: 15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 400px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 210px;\n  align-self: flex-end;\n}\n", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,uBAAuB;EACvB,mBAAmB;EACnB,yBAAyB;EACzB,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,6BAA6B;EAC7B,uBAAuB;AACzB;;AAEA;EACE,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,oBAAoB;AACtB","sourcesContent":["#addEmail-form {\n  margin-left: 20px;\n  margin-top: 15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 400px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 210px;\n  align-self: flex-end;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -16889,7 +16908,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#bodyForm {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 185px;\n  width: 80vw;\n}\n\n#emailName {\n  flex: 0 32%;\n  height: 75px;\n  padding: 15px 15px;\n  margin: 15px 15px;\n}\n\n#noEmails {\n  font-weight: 650;\n  margin-top: 15px;\n  height: 40px;\n}\n\n#formSO {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n  margin-top: 5px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n  height: 100%;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\n#errMsg {\n  flex-grow: 1;\n  padding: 5px 5px;\n  font-size: 14px;\n  color: #fa050f;\n  margin-bottom: 0%;\n}\n\ninput {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n}\n\n#message {\n  align-self: center;\n\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n}\n\n#textarea {\n  align-self: center;\n}\n\n#submit {\n  align-self: center;\n\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,mBAAmB;EACnB,eAAe;EACf,uBAAuB;EACvB,aAAa;EACb,WAAW;AACb;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;EACnB,eAAe;EACf,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,kBAAkB;EAClB,yBAAyB;EACzB,YAAY;AACd;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,YAAY;EACZ,gBAAgB;EAChB,eAAe;EACf,cAAc;EACd,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;AACvB;;AAEA;EACE,kBAAkB;;EAElB,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;;EAElB,gBAAgB;AAClB","sourcesContent":["#bodyForm {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 185px;\n  width: 80vw;\n}\n\n#emailName {\n  flex: 0 32%;\n  height: 75px;\n  padding: 15px 15px;\n  margin: 15px 15px;\n}\n\n#noEmails {\n  font-weight: 650;\n  margin-top: 15px;\n  height: 40px;\n}\n\n#formSO {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n  margin-top: 5px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n  height: 100%;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\n#errMsg {\n  flex-grow: 1;\n  padding: 5px 5px;\n  font-size: 14px;\n  color: #fa050f;\n  margin-bottom: 0%;\n}\n\ninput {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n}\n\n#message {\n  align-self: center;\n\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n}\n\n#textarea {\n  align-self: center;\n}\n\n#submit {\n  align-self: center;\n\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#bodyForm {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 185px;\n  width: 80vw;\n}\n\n#emailName {\n  flex: 0 32%;\n  height: 75px;\n  padding: 15px 15px;\n  margin: 15px 15px;\n}\n\n#noEmails {\n  font-weight: 650;\n  margin-top: 15px;\n  height: 40px;\n}\n\n#formSO {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n  margin-top: 5px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n  height: 100%;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\n.errMsg {\n  flex-grow: 1;\n  padding: 5px 5px;\n  font-size: 14px;\n  color: #fa050f;\n  margin-bottom: 0%;\n}\n\ninput {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n}\n\n#message {\n  align-self: center;\n\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n}\n\n#textarea {\n  align-self: center;\n}\n\n#submit {\n  align-self: center;\n\n  flex-basis: auto;\n}\n", "",{"version":3,"sources":["webpack://./client/components/shoutout-form.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,mBAAmB;EACnB,eAAe;EACf,uBAAuB;EACvB,aAAa;EACb,WAAW;AACb;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,uBAAuB;EACvB,kBAAkB;EAClB,sBAAsB;EACtB,mBAAmB;EACnB,eAAe;EACf,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,kBAAkB;EAClB,yBAAyB;EACzB,YAAY;AACd;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,YAAY;EACZ,gBAAgB;EAChB,eAAe;EACf,cAAc;EACd,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;AACvB;;AAEA;EACE,kBAAkB;;EAElB,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,oBAAoB;EACpB,iBAAiB;EACjB,oBAAoB;EACpB,qBAAqB;EACrB,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;;EAElB,gBAAgB;AAClB","sourcesContent":["#bodyForm {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n}\n\n#emailInfo {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 185px;\n  width: 80vw;\n}\n\n#emailName {\n  flex: 0 32%;\n  height: 75px;\n  padding: 15px 15px;\n  margin: 15px 15px;\n}\n\n#noEmails {\n  font-weight: 650;\n  margin-top: 15px;\n  height: 40px;\n}\n\n#formSO {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n  text-align: center;\n  flex-direction: column;\n  align-items: center;\n  margin-top: 5px;\n  width: 350px;\n  margin-bottom: 25px;\n  border: 1px solid black;\n  border-radius: 5px;\n  background-color: #bbe0e3;\n  height: 100%;\n}\n\n.shoutout-input {\n  align-self: center;\n}\n\n.errMsg {\n  flex-grow: 1;\n  padding: 5px 5px;\n  font-size: 14px;\n  color: #fa050f;\n  margin-bottom: 0%;\n}\n\ninput {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n}\n\n#message {\n  align-self: center;\n\n  margin-top: 15px;\n}\n\n#message label {\n  display: flex;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  justify-content: center;\n}\n\n#textarea {\n  align-self: center;\n}\n\n#submit {\n  align-self: center;\n\n  flex-basis: auto;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 

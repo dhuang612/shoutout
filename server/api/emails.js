@@ -6,7 +6,6 @@ module.exports = router
 //everything to do with adding emails
 router.post('/', async (req, res, next) => {
   try {
-    // console.log('hitting this route!')
     if (req.body) {
       const user = req.user
       // console.log(req.body.email)

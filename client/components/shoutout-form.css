@@ -59,7 +59,7 @@
   align-self: center;
 }
 
-#errMsg {
+.errMsg {
   flex-grow: 1;
   padding: 5px 5px;
   font-size: 14px;

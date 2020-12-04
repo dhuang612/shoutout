@@ -20,7 +20,6 @@ const emailExists = async values => {
       } else if (process.env.NODE_ENV === 'development') {
         routePath = process.env.LOCAL_API_ROUTE
       }
-
       const checkEmail = await axios.get(routePath)
       if (checkEmail.data.length > 0) {
         checkEmail.data.map(email => {
@@ -37,6 +36,10 @@ const emailExists = async values => {
   }
 }
 
+const required = value => {
+  return value ? undefined : 'Required'
+}
+
 const EmailForm = props => {
   const {emails, handleSubmit, error} = props
 
@@ -46,7 +49,7 @@ const EmailForm = props => {
         onSubmit={handleSubmit}
         validate={emailExists}
         initialValues={{email: '', firstName: ''}}
-        render={({handleSubmit, submitError, form}) => (
+        render={({handleSubmit, submitError, form, pristine}) => (
           <form
             id="addEmail-form"
             onSubmit={async e => {
@@ -65,25 +68,31 @@ const EmailForm = props => {
             }}
           >
             <div>
-              <label>First Name</label>
-              <Field
-                name="firstName"
-                component="input"
-                placeholder="First Name"
-              />
+              <Field name="firstName" validate={required}>
+                {({input, meta}) => (
+                  <div id="firstNameValue">
+                    <label>First Name</label>
+                    <input {...input} type="text" placeholder="First Name" />
+                    <div className="errMsg">
+                      {(meta.error || meta.submitError) &&
+                        meta.touched && (
+                          <span>{meta.error || meta.submitError}</span>
+                        )}
+                    </div>
+                  </div>
+                )}
+              </Field>
             </div>
             <div id="emailInput">
-              <Field name="email">
+              <Field name="email" validate={required}>
                 {({input, meta}) => (
                   <div id="emailValue">
                     <label>Email</label>
                     <input {...input} type="text" placeholder="Email" />
-                    <div id="errMsg">
+                    <div className="errMsg">
                       {(meta.error || meta.submitError) &&
                         meta.touched && (
-                          <span className="error">
-                            {meta.error || meta.submitError}
-                          </span>
+                          <span>{meta.error || meta.submitError}</span>
                         )}
                     </div>
                   </div>
@@ -91,7 +100,7 @@ const EmailForm = props => {
               </Field>
             </div>
             <div id="submitBtn">
-              <Button variant="success" type="submit">
+              <Button variant="success" type="submit" disabled={pristine}>
                 add email
               </Button>
             </div>

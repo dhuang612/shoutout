@@ -1,10 +1,10 @@
 #addEmail-form {
-  margin-left: 10px;
+  margin-left: 20px;
   margin-top: 15px;
   border: 1px solid black;
   border-radius: 15px;
   background-color: #81decb;
-  width: 450px;
+  width: 400px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -23,6 +23,6 @@
 }
 
 #submitBtn {
-  margin-left: 310px;
+  margin-left: 210px;
   align-self: flex-end;
 }
