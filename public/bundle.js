@@ -292,7 +292,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddEmail", function() { return AddEmail; });
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddEmail", function() { return AddEmail; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -303,11 +303,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _email_form_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./email-form.css */ "./client/components/email-form.css");
+/* harmony import */ var _secrets__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../secrets */ "./secrets.js");
+/* harmony import */ var _secrets__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_secrets__WEBPACK_IMPORTED_MODULE_8__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -324,7 +327,7 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee(values) {
-    var errors, checkEmail;
+    var errors, routePath, checkEmail;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -333,15 +336,20 @@ function () {
             _context.prev = 1;
 
             if (!(values.email.endsWith('.com') || values.email.endsWith('.edu'))) {
-              _context.next = 8;
+              _context.next = 9;
               break;
             }
 
             console.log('validating!', values);
-            _context.next = 6;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/emails/showAllEmails');
 
-          case 6:
+            if (false) {} else if (true) {
+              routePath = process.env.LOCAL_API_ROUTE;
+            }
+
+            _context.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(routePath);
+
+          case 7:
             checkEmail = _context.sent;
 
             if (checkEmail.data.length > 0) {
@@ -353,20 +361,20 @@ function () {
               });
             }
 
-          case 8:
+          case 9:
             return _context.abrupt("return", errors);
 
-          case 11:
-            _context.prev = 11;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](1);
             console.error(_context.t0);
 
-          case 14:
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 11]]);
+    }, _callee, null, [[1, 12]]);
   }));
 
   return function emailExists(_x) {
@@ -506,6 +514,7 @@ var mapDispatch = function mapDispatch(dispatch) {
 };
 
 var AddEmail = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(null, mapDispatch)(EmailForm);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -16805,7 +16814,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "#addEmail-form {\n  margin-left: 10px;\n  margin-top:15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 310px;\n  align-self: flex-end;\n}\n", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,eAAe;EACf,uBAAuB;EACvB,mBAAmB;EACnB,yBAAyB;EACzB,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,6BAA6B;EAC7B,uBAAuB;AACzB;;AAEA;EACE,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,oBAAoB;AACtB","sourcesContent":["#addEmail-form {\n  margin-left: 10px;\n  margin-top:15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 310px;\n  align-self: flex-end;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "#addEmail-form {\n  margin-left: 10px;\n  margin-top: 15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 310px;\n  align-self: flex-end;\n}\n", "",{"version":3,"sources":["webpack://./client/components/email-form.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,uBAAuB;EACvB,mBAAmB;EACnB,yBAAyB;EACzB,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,6BAA6B;EAC7B,uBAAuB;AACzB;;AAEA;EACE,sBAAsB;EACtB,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,oBAAoB;AACtB","sourcesContent":["#addEmail-form {\n  margin-left: 10px;\n  margin-top: 15px;\n  border: 1px solid black;\n  border-radius: 15px;\n  background-color: #81decb;\n  width: 450px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  align-items: flex-start;\n}\n\n#emailInput {\n  align-self: flex-start;\n  margin-top: 1px;\n}\n\n.error {\n  font-size: 14px;\n  color: #fa050f;\n}\n\n#submitBtn {\n  margin-left: 310px;\n  align-self: flex-end;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -61147,6 +61156,20 @@ yeast.encode = encode;
 yeast.decode = decode;
 module.exports = yeast;
 
+
+/***/ }),
+
+/***/ "./secrets.js":
+/*!********************!*\
+  !*** ./secrets.js ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {process.env.SENDGRID_API_KEY = "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";
+process.env.PROD_API_ROUTE = "https://shoutouts-the-app.herokuapp.com/api/emails/showAllEmails";
+process.env.LOCAL_API_ROUTE = "/api/emails/showAllEmails";
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 

@@ -13,7 +13,15 @@ const emailExists = async values => {
   try {
     if (values.email.endsWith('.com') || values.email.endsWith('.edu')) {
       console.log('validating!', values)
-      const checkEmail = await axios.get(process.env.API_ROUTE)
+
+      let routePath
+      if (process.env.NODE_ENV === 'production') {
+        routePath = process.env.PROD_API_ROUTE
+      } else if (process.env.NODE_ENV === 'development') {
+        routePath = process.env.LOCAL_API_ROUTE
+      }
+
+      const checkEmail = await axios.get(routePath)
       if (checkEmail.data.length > 0) {
         checkEmail.data.map(email => {
           if (email.email === values.email) {
