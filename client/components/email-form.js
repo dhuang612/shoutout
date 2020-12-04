@@ -6,13 +6,14 @@ import {FORM_ERROR} from 'final-form'
 import {connect} from 'react-redux'
 import Button from 'react-bootstrap/Button'
 import './email-form.css'
+import '../../secrets'
 
 const emailExists = async values => {
   const errors = {}
   try {
     if (values.email.endsWith('.com') || values.email.endsWith('.edu')) {
       console.log('validating!', values)
-      const checkEmail = await axios.get('/api/emails/showAllEmails')
+      const checkEmail = await axios.get(process.env.API_ROUTE)
       if (checkEmail.data.length > 0) {
         checkEmail.data.map(email => {
           if (email.email === values.email) {
