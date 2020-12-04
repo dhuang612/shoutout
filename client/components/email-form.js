@@ -10,13 +10,9 @@ import './email-form.css'
 const emailExists = async values => {
   const errors = {}
   try {
-    if (values.email.endsWith('.com')) {
-      console.log('validating!')
-      console.log('this is what we are passing back', values.email)
-      const checkEmail = await axios.get(
-        '/api/emails/showAllEmails',
-        values.email
-      )
+    if (values.email.endsWith('.com') || values.email.endsWith('.edu')) {
+      console.log('validating!', values)
+      const checkEmail = await axios.get('/api/emails/showAllEmails')
       if (checkEmail.data.length > 0) {
         checkEmail.data.map(email => {
           if (email.email === values.email) {
@@ -25,8 +21,8 @@ const emailExists = async values => {
           }
         })
       }
-      return errors
     }
+    return errors
   } catch (error) {
     console.error(error)
   }
@@ -76,7 +72,9 @@ const EmailForm = props => {
                     <div id="errMsg">
                       {(meta.error || meta.submitError) &&
                         meta.touched && (
-                          <span className="error">{meta.error}</span>
+                          <span className="error">
+                            {meta.error || meta.submitError}
+                          </span>
                         )}
                     </div>
                   </div>
