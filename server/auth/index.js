@@ -89,6 +89,7 @@ router.post('/signup/invite', async (req, res, next) => {
       const email = req.body.email
       const user = await User.create({email, password})
       user.flag = false
+      user.isVerified = true
       user.inviteId = req.body.id
       await user.save()
 

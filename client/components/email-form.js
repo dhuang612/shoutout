@@ -56,10 +56,10 @@ const EmailForm = props => {
               try {
                 await handleSubmit(e)
                 if (submitError === 'undefined') {
-                  form.reset()
+                  form.restart()
                 } else {
                   setTimeout(() => {
-                    form.reset()
+                    form.restart()
                   }, 2500)
                 }
               } catch (error) {
