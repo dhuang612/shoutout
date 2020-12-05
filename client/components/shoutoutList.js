@@ -13,6 +13,7 @@ export class ShoutoutList extends Component {
     if (shoutouts !== [] && shoutouts !== undefined) {
       return (
         <div id="shoutouts">
+          <p>Click names below to send shoutout</p>
           {shoutouts.length ? (
             shoutouts.map(({id, name, email}) => (
               <div key={id}>
