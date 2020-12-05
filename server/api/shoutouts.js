@@ -16,10 +16,10 @@ router.post('/new', async (req, res, next) => {
       if (!req.body.from) {
         from = 'N/A'
       }
-      if (!req.body.inviteId) {
-        idToCheck = req.user.id
+      if (!user.inviteId) {
+        idToCheck = user.id
       } else {
-        idToCheck = req.body.inviteId
+        idToCheck = user.inviteId
       }
       const emailToCheck = req.body.email
       const checkEmail = await Emails.findOne({
