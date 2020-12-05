@@ -54,6 +54,12 @@ export const inviteAuth = (email, password, id) => async dispatch => {
   let res
   try {
     res = await axios.post('/auth/signup/invite', {email, password, id})
+    try {
+      dispatch(getUser(res.data))
+      history.push('/home')
+    } catch (error) {
+      console.error(error)
+    }
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
