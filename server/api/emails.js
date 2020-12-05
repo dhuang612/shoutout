@@ -75,10 +75,9 @@ router.post('/sendInvite', async (req, res, next) => {
         sender: 'no-reply@shoutout.com',
         receiver: req.body.email,
         name: req.body.firstName,
-        login_url: 'https://localhost:8080/signup/invite',
+        login_url: 'https://shoutouts-the-app.herokuapp.com/signup/invite',
         id: userId
       }
-      //https://shoutouts-the-app.herokuapp.com/signup/invite
       const sendEmail = sender.sendEmail(data)
       const emailToFind = await Emails.findOne({
         where: {
