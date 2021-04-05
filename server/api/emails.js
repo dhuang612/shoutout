@@ -8,6 +8,7 @@ router.post('/', async (req, res, next) => {
   try {
     if (req.body) {
       const user = req.user
+      // console.log(req.body.email)
       if (user.usedValidEmail(req.body.email)) {
         const addEmail = user.createEmail({
           firstName: req.body.firstName,
@@ -15,30 +16,9 @@ router.post('/', async (req, res, next) => {
         })
         if (addEmail) {
           res.status(200).send('successfully added email!')
+        } else {
+          res.status(401).send('something went wrong')
         }
-      } else {
-        res.status(401).send('invalid email!')
-      }
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-//future goal setup a route to add multiple emails
-router.post('/all', async (req, res, next) => {
-  try {
-    if (req.body) {
-      const user = req.user
-      let idNum = 1
-      let emailObj = {
-        id: idNum + 1,
-        firstName: req.body.firstName,
-        email: req.body.email
-      }
-      const addEmails = await user.addEmails(emailObj)
-      console.log(addEmails)
-      if (addEmails) {
-        res.status(200).send('successfully added!')
       }
     }
   } catch (error) {
@@ -104,7 +84,6 @@ router.post('/sendInvite', async (req, res, next) => {
           email: req.body.email
         }
       })
-      console.log('this is what emailToFind holds', emailToFind)
       emailToFind.sent = true
       await emailToFind.save()
       res.status(200).send('successfully sent so!')

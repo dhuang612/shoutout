@@ -62,7 +62,6 @@ export const sendShoutouts = (email, msg, name) => async dispatch => {
       msg,
       name
     })
-    console.log('shoutoutToSend holds', shoutoutToSend)
 
     // history.push('/home/showShoutouts')
   } catch (error) {

@@ -34,7 +34,6 @@ export const auth = (email, password, method) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
-    console.log('this is what is returned from signup', res.data)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -43,8 +42,6 @@ export const auth = (email, password, method) => async dispatch => {
     dispatch(getUser(res.data))
     if (method === 'login') {
       history.push('/home')
-    } else if (method === 'signup') {
-      history.push('/login')
     }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -52,18 +49,21 @@ export const auth = (email, password, method) => async dispatch => {
 }
 
 export const inviteAuth = (email, password, id) => async dispatch => {
-  //maybe try the res var instead?
   let res
   try {
-    console.log(email)
     res = await axios.post('/auth/signup/invite', {email, password, id})
-    console.log('this is res', res)
-    // console.log(data)
+    try {
+      dispatch(getUser(res.data))
+      history.push('/home')
+    } catch (error) {
+      console.error(error)
+    }
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
   try {
-    dispatch(getUser(res.data))
+    dispatch(getUser(res.data.user))
+    console.log(getUser(res.data.user))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

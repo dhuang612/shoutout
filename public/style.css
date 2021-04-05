@@ -12,10 +12,6 @@
 
   font-family: 'Oswald', sans-serif;
 }
-/* #body::before{
-  content: "";
-
-} */
 
 #header {
   text-align: center;
@@ -30,17 +26,42 @@
   text-align: left;
 }
 
-a {
-  text-decoration: none;
-}
-
 label {
   display: block;
 }
 
 nav a {
+  outline: none;
   display: inline-block;
   margin: 1em;
+  color: #ffd24c;
+  outline: none;
+  text-decoration: none;
+}
+
+nav a:link {
+  color: #ffd24c;
+}
+
+nav a:visited {
+  color: #ffd670;
+}
+
+nav a:focus {
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  color: #ffd24c;
+  border-bottom: 1px solid;
+  background: #fff30d;
+  border-radius: 5px;
+}
+
+nav a:active {
+  color: #ffe136;
 }
 
 #auth {

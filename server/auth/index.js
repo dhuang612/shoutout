@@ -11,12 +11,10 @@ router.post('/login', async (req, res, next) => {
       where: {email: req.body.email, isVerified: {[Op.or]: ['true', 'false']}}
     })
     if (!user) {
-      console.log('No such user found:', req.body.email)
       res.status(401).send('no user found')
     } else if (!user.isVerified) {
       res.status(401).send('awaiting email verification')
     } else if (!user.correctPassword(req.body.password)) {
-      console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
       req.login(user, err => (err ? next(err) : res.json(user)))
@@ -40,7 +38,7 @@ router.post('/signup', async (req, res, next) => {
       password: req.body.password,
       token
     })
-    console.log('this is the token we are assigned', token)
+
     if (user.usedValidEmail(req.body.email)) {
       let data = {
         receiver: req.body.email,
@@ -50,16 +48,12 @@ router.post('/signup', async (req, res, next) => {
       }
 
       const sendEmail = sender.sendEmail(data)
-      // console.log('this is sendEmail', sendEmail)
-      if (sendEmail) {
-        return res
-          .status(401)
-          .json('Please check your Email for account confirmation')
-      }
+
+      res.status(201).json('Please check your Email for account verification')
     } else {
       const removeUser = await User.findByPk(user.id)
       await removeUser.destroy(req.body)
-      res.status(401).send('Invalid email!')
+      res.status(401).send({message: 'Invalid email!'})
     }
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -72,7 +66,6 @@ router.post('/signup', async (req, res, next) => {
 
 //route for email verification
 router.get('/confirmation/:token', async (req, res, next) => {
-  console.log('this is the token we are trying to use', req.params.token)
   const findUser = await User.findOne({
     where: {
       token: req.params.token
@@ -96,6 +89,7 @@ router.post('/signup/invite', async (req, res, next) => {
       const email = req.body.email
       const user = await User.create({email, password})
       user.flag = false
+      user.isVerified = true
       user.inviteId = req.body.id
       await user.save()
 

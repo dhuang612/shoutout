@@ -47,8 +47,8 @@ class SingleEmail extends Component {
             <Modal.Title>Confirm sending invite email</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div>{emailToShow}</div>
             <div>{nameToShow}</div>
+            <div>{emailToShow}</div>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>

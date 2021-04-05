@@ -1,0 +1,28 @@
+#addEmail-form {
+  margin-left: 20px;
+  margin-top: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #81decb;
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+#emailInput {
+  align-self: flex-start;
+  margin-top: 1px;
+}
+
+.error {
+  font-size: 14px;
+  color: #fa050f;
+}
+
+#submitBtn {
+  margin-left: 210px;
+  align-self: flex-end;
+}

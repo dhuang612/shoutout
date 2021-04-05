@@ -16,7 +16,9 @@ export class EmailList extends Component {
           {emails.length ? (
             emails.map(({id, email, sent}) => (
               <div key={id}>
-                <Link to={`/home/showEmails/${id}`}>{email}</Link>{' '}
+                <Link className="showOneShoutout" to={`/home/showEmails/${id}`}>
+                  {email}
+                </Link>{' '}
                 {sent ? '✓' : ''}
               </div>
             ))
@@ -24,7 +26,9 @@ export class EmailList extends Component {
             <div id="noEmails">
               No emails{' '}
               <div className="link">
-                <Link to="/home/addEmail">add new emails</Link>
+                <Link className="addEmails" to="/home/addEmail">
+                  add new emails
+                </Link>
               </div>
             </div>
           )}
